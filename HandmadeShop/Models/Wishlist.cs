@@ -1,0 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HandmadeShop.Models;
+
+public class Wishlist
+{
+    [Key]
+    public int WishlistID { get; set; }
+    [ForeignKey(nameof(User))]
+    public int UserId { get; set; }
+    public User User { get; set; }
+}
