@@ -15,7 +15,7 @@ public class ArtistRepository : IArtistRepository
     public IEnumerable<Artist> GetAll()
     {
         return _context.Artists
-            .Include(a => a.ArtistProducts);
+            .Include(a => a.Products);
     }
     public void Create(Artist artist)
     {
@@ -43,6 +43,7 @@ public class ArtistRepository : IArtistRepository
     }
     public List<ArtistProduct> getAllArtistProducts()
     {
-        return _context.ArtistProducts.ToList();
+        throw new NotImplementedException();
+       // return _context.ArtistProducts.ToList();
     }
 }
