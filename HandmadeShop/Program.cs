@@ -29,6 +29,20 @@ public class Program
         builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
         builder.Services.AddScoped<IArtistService, ArtistService>();
 
+        var allowedOrigins = builder.Configuration.GetValue<string>("allowedOrigins")!.Split(",");
+        
+        builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(policy =>
+            {
+                policy
+                    .WithOrigins(allowedOrigins)
+                    //.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -40,6 +54,8 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+
+        app.UseCors();
 
         app.UseAuthorization();
 
