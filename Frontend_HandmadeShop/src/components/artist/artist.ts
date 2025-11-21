@@ -12,10 +12,18 @@ export class ArtistComponent {
 
   ArtistsService = inject(ArtistsService);
 
-  constructor(){
-    this.ArtistsService.get().subscribe( artists => {
-      console.log(artists)
-      this.artists = artists;
+constructor(
+  private artistService: ArtistsService
+) {}
+
+  ngOnInit() {
+    this.artistService.get().subscribe(artists => {
+      this.artists = artists.map(a => ({
+        ...a,
+        // imageSrc 'data:image/png;base64,' + artist.artistImage;
+
+        imageSrc: a.artistImage ? 'data:image/png;base64,' + a.artistImage : null
+      }));
     });
   }
 

@@ -1,3 +1,4 @@
+using HandmadeShop.DTOs;
 using HandmadeShop.Models;
 using HandmadeShop.Repositories.Interfaces;
 using HandmadeShop.Services.Interfaces;
@@ -15,29 +16,46 @@ public class ArtistService : IArtistService
     {
         return _artistRepository.GetAll().ToList();
     }
-    public async Task AddArtistAsync(Artist artist)
+    public async Task AddArtistAsync(ArtistDto artistDto)
     {
-        if (artist.ImageFile != null && artist.ImageFile.Length > 0)
+        if (artistDto.ImageFile != null && artistDto.ImageFile.Length > 0)
         {
             using (var ms = new MemoryStream())
             {
-                await artist.ImageFile.CopyToAsync(ms);
-                artist.ArtistImage = ms.ToArray();
+                await artistDto.ImageFile.CopyToAsync(ms);
+                artistDto.ArtistImage = ms.ToArray();
             }
         }
-        _artistRepository.Create(artist);
+
+        var newArtist = new Artist
+        {
+            ArtistID = artistDto.Id,
+            Name = artistDto.Name,
+            Description = artistDto.Description,
+            ImageFile = artistDto.ImageFile,
+            ArtistImage = artistDto.ArtistImage
+        };
+        _artistRepository.Create(newArtist);
         _artistRepository.Save();
     }
-    public async Task UpdateArtistAsync(Artist artist)
+    public async Task UpdateArtistAsync(ArtistDto artistDto)
     {
         using var ms = new MemoryStream();
 
-        if (artist.ImageFile != null && artist.ImageFile.Length > 0)
+        if (artistDto.ImageFile != null && artistDto.ImageFile.Length > 0)
         {
-            await artist.ImageFile.CopyToAsync(ms);
-            artist.ArtistImage = ms.ToArray();
+            await artistDto.ImageFile.CopyToAsync(ms);
+            artistDto.ArtistImage = ms.ToArray();
         }
-        _artistRepository.Update(artist);
+        var newArtist = new Artist
+        {
+            ArtistID = artistDto.Id,
+            Name = artistDto.Name,
+            Description = artistDto.Description,
+            ImageFile = artistDto.ImageFile,
+            ArtistImage = artistDto.ArtistImage
+        };
+        _artistRepository.Update(newArtist);
         _artistRepository.Save();
     }
     public void DeleteArtist(int id)

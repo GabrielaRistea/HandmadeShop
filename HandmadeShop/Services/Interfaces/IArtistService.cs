@@ -1,3 +1,4 @@
+using HandmadeShop.DTOs;
 using HandmadeShop.Models;
 
 namespace HandmadeShop.Services.Interfaces;
@@ -5,10 +6,11 @@ namespace HandmadeShop.Services.Interfaces;
 public interface IArtistService
 {
     List<Artist> GetAllArtists();
-    Task AddArtistAsync(Artist artist);
-    Task UpdateArtistAsync(Artist artist);
+    Task AddArtistAsync(ArtistDto artistDto);
+    Task UpdateArtistAsync(ArtistDto artistDto);
     void DeleteArtist(int id);
     bool ArtistExists(int id);
     Artist GetArtistById(int id);
     List<ArtistProduct> getAllArtistProducts();
+    
 }
