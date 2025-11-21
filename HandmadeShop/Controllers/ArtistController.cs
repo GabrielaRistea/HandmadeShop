@@ -1,3 +1,4 @@
+using HandmadeShop.DTOs;
 using HandmadeShop.Models;
 using HandmadeShop.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -39,24 +40,25 @@ public class ArtistController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] Artist artist)
+    public async Task<IActionResult> Create([FromForm] ArtistDto artistDto)
     {
         var artists = _artistService.GetAllArtists();
 
-        await _artistService.AddArtistAsync(artist);
-        return CreatedAtAction(nameof(GetById), new { id = artist.ArtistID }, artist);
+        await _artistService.AddArtistAsync(artistDto);
+        //return CreatedAtAction(nameof(GetById), new { id = artist.ArtistID }, artist);
+        return Ok(artistDto);
 
     }
     
     [HttpPut("{id}")]
-    public async Task<IActionResult> EditAsync(int id, [FromBody] Artist artist)
+    public async Task<IActionResult> EditAsync(int id, [FromForm] ArtistDto artistDto)
     {
-        if (id != artist.ArtistID)
+        if (id != artistDto.Id)
         {
             return BadRequest();
         }
         
-        await _artistService.UpdateArtistAsync(artist);
+        await _artistService.UpdateArtistAsync(artistDto);
         
         return NoContent();
 
