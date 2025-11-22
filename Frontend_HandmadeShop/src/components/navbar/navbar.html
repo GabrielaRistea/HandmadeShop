@@ -1,1 +1,10 @@
-<p>navbar works!</p>
+<mat-toolbar>
+    <span>
+        <button [routerLink]="['']" mat-button="outlined">
+            <mat-icon>flare</mat-icon> Handmade Store
+        </button>
+        <button [routerLink]="['/artist']" mat-button>
+            Artists
+        </button>
+    </span>
+</mat-toolbar>

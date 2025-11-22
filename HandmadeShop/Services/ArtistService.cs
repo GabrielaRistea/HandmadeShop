@@ -29,7 +29,7 @@ public class ArtistService : IArtistService
 
         var newArtist = new Artist
         {
-            ArtistID = artistDto.Id,
+            //ArtistID = artistDto.Id,
             Name = artistDto.Name,
             Description = artistDto.Description,
             ImageFile = artistDto.ImageFile,

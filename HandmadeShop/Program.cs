@@ -28,6 +28,8 @@ public class Program
         
         builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
         builder.Services.AddScoped<IArtistService, ArtistService>();
+        builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+        builder.Services.AddScoped<ICategoryService, CategoryService>();
 
         var allowedOrigins = builder.Configuration.GetValue<string>("allowedOrigins")!.Split(",");
         

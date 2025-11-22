@@ -1,0 +1,17 @@
+<h2>Add artist</h2>
+
+<form (submit)="saveChanges()" [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput [formControl]="form.controls.Name" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <input matInput [formControl]="form.controls.Description" />
+    </mat-form-field>
+     <input type="file" (change)="onFileSelected($event)">
+    <div>
+        <button type="submit" mat-flat-button>Save Artist</button>
+        <a mat-stroked-button routerLink="/artist">Cancel</a>
+    </div>
+</form>

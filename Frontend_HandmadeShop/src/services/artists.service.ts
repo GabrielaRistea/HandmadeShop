@@ -16,9 +16,14 @@ export class ArtistsService {
   public get(): Observable<ArtistDto[]> {
     return this.http.get<ArtistDto[]>(this.apiUrl, {responseType: "json"});
   } 
-  public post(artistDto: ArtistDto) : Observable<boolean> {
-    return this.http.post<boolean>(this.apiUrl, artistDto, {responseType: "json"});
-  }
+  // public post(artistDto: ArtistDto) : Observable<{ success: boolean }> {
+  //   return this.http.post<{ success: boolean }>(this.apiUrl, artistDto, {responseType: "json"});
+  // }
+
+  postFormData(formData: FormData) {
+  return this.http.post(this.apiUrl, formData);
+}
+
 
 
 
