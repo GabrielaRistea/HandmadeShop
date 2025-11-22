@@ -1,11 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { ArtistsService } from '../../services/artists.service';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
+import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 
 @Component({
   selector: 'app-artist',
-  imports: [],
+  imports: [MatButtonModule, RouterLink],
   templateUrl: './artist.html',
-  styleUrl: './artist.scss',
+  styleUrls: ['./artist.scss'],
 })
 export class ArtistComponent {
   artists: any[] = [];

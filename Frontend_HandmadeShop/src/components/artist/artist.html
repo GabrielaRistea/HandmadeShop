@@ -1,3 +1,9 @@
+<!-- <h2>Artists</h2>
+
+<a routerLink="/artist-create" mat-flat-button>
+    Add a new Artist
+</a>
+
 @for (artist of artists; track $index) {
     <div>
         <div>
@@ -12,4 +18,27 @@
 
     </div>
     <hr>
-}
+} -->
+
+<div class="artists-container">
+  <div class="header">
+    <h2>Artists</h2>
+    <a routerLink="/artist-create" mat-flat-button color="primary">Add a new Artist</a>
+  </div>
+
+  @for (artist of artists; track $index) {
+    <div class="artist-card">
+      <div class="artist-info">
+        <h3 class="artist-name">{{ artist.name }}</h3>
+        <p class="artist-description">{{ artist.description }}</p>
+      </div>
+
+      @if (artist.imageSrc) {
+        <img [src]="artist.imageSrc" alt="{{ artist.name }}" class="artist-image">
+      }
+
+    </div>
+  }
+</div>
+
+

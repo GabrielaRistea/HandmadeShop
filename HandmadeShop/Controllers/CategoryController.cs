@@ -1,3 +1,5 @@
+using HandmadeShop.Models;
+using HandmadeShop.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,36 +9,74 @@ namespace HandmadeShop.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
+        private readonly ICategoryService _categoryService;
+        public CategoryController(ICategoryService categoryService)
+        {
+            _categoryService = categoryService;
+        }
+        
         // GET: api/<CategoryController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult GetAll()
         {
-            return new string[] { "value1", "value2" };
+            var category = _categoryService.getAllCategories();
+            return Ok(category);
         }
 
         // GET api/<CategoryController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult GetById(int? id)
         {
-            return "value";
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var category = _categoryService.GetCategoryById(id.Value);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(category);
         }
 
         // POST api/<CategoryController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Create([FromBody] Category category)
         {
+            var categories = _categoryService.getAllCategories();
+
+            _categoryService.AddCategory(category);
+            return Ok(category);
         }
 
         // PUT api/<CategoryController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Edit (int id, [FromBody] Category category)
         {
+            if (id != category.CategoryID)
+            {
+                return BadRequest();
+            }
+        
+            _categoryService.UpdateCategory(category);
+        
+            return NoContent();
+
         }
 
         // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var category = _categoryService.GetCategoryById(id);
+            if (category != null)
+            {
+                _categoryService.DeleteCategory(id);
+            }
+            return NoContent();
         }
     }
 }
