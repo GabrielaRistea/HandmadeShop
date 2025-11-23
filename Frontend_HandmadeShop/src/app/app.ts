@@ -9,6 +9,6 @@ import { Navbar } from '../components/navbar/navbar';
   styleUrls: ['./app.scss']
 })
 export class App {
-  protected readonly title = signal('Frontend_HandmadeShop');
-  test = "324"
+  //protected readonly title = signal('Frontend_HandmadeShop');
+  //test = "324"
 }
