@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HandmadeShop.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
