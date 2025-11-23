@@ -1,0 +1,84 @@
+using HandmadeShop.Context;
+using HandmadeShop.Models;
+using HandmadeShop.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
+namespace HandmadeShop.Repositories;
+
+public class ProductRepository : IProductRepository
+{
+    private ShopContext _context;
+    public ProductRepository(ShopContext shopContext)
+    {
+        _context = shopContext;
+    }
+    public IEnumerable<Product> GetAll()
+    {
+        return _context.Products
+            .Include(ap => ap.ArtistProducts)
+            .ThenInclude(a => a.Artist)
+            .Include(c => c.Category)
+            .Include(o => o.OrderItems)
+            .Include(r => r.Reviews)
+            .Include(w => w.WishlistProducts);
+    }
+
+    public List<ArtistProduct> GetAllArtistProducts()
+    {
+        return _context.ArtistProducts.ToList();
+    }
+    public List<Review> GetAllReviews()
+    {
+        return _context.Reviews.ToList();
+    }
+    public List<OrderItem> GetAllOrderItems()
+    {
+        return _context.OrderItems.ToList();
+    }
+    public List<WishlistProduct> GetAllWishlistProducts() 
+    {
+        return _context.WishlistProducts.ToList();
+    }
+    public Product GetById(int id)
+    {
+        return _context.Products
+            .Include(ap => ap.ArtistProducts)
+            .ThenInclude(a => a.Artist)
+            .Include(c => c.Category)
+            .Include(o => o.OrderItems)
+            .Include(r => r.Reviews)
+            .Include(w => w.WishlistProducts).FirstOrDefault(p => p.ProductID == id);
+    }
+    public void Save()
+    {
+        _context.SaveChanges();
+    }
+
+    public bool ProductExists(int id)
+    {
+        return _context.Products.Any(p => p.ProductID == id);
+    }
+    public void Update(Product product)
+    {
+        _context.Products.Update(product);
+    }
+    public List<Category> GetAllCategories()
+    {
+        return _context.Categories.ToList();
+    }
+    public Product GetByIdWithRelatedEntities(int id)
+    {
+        return _context.Products.Include(c => c.Category)
+               
+            .FirstOrDefault(m => m.ProductID == id);
+    }
+    public void Create(Product product)
+    {
+        _context.Products.Add(product);
+    }
+
+    public void Delete(Product product)
+    {
+        _context.Products.Remove(product);
+    }
+}

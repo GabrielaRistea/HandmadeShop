@@ -3,6 +3,7 @@ using System;
 using HandmadeShop.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HandmadeShop.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20251123173458_wishlistrelation")]
+    partial class wishlistrelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,21 @@ namespace HandmadeShop.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("ArtistProduct", b =>
+                {
+                    b.Property<int>("ArtistsArtistID")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ProductsProductID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ArtistsArtistID", "ProductsProductID");
+
+                    b.HasIndex("ProductsProductID");
+
+                    b.ToTable("ArtistProduct");
+                });
 
             modelBuilder.Entity("HandmadeShop.Models.Artist", b =>
                 {
@@ -44,29 +62,6 @@ namespace HandmadeShop.Migrations
                     b.HasKey("ArtistID");
 
                     b.ToTable("Artists");
-                });
-
-            modelBuilder.Entity("HandmadeShop.Models.ArtistProduct", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ArtistId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArtistId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ArtistProducts");
                 });
 
             modelBuilder.Entity("HandmadeShop.Models.Category", b =>
@@ -320,23 +315,19 @@ namespace HandmadeShop.Migrations
                     b.ToTable("WishlistProducts");
                 });
 
-            modelBuilder.Entity("HandmadeShop.Models.ArtistProduct", b =>
+            modelBuilder.Entity("ArtistProduct", b =>
                 {
-                    b.HasOne("HandmadeShop.Models.Artist", "Artist")
-                        .WithMany("ArtistProducts")
-                        .HasForeignKey("ArtistId")
+                    b.HasOne("HandmadeShop.Models.Artist", null)
+                        .WithMany()
+                        .HasForeignKey("ArtistsArtistID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HandmadeShop.Models.Product", "Product")
-                        .WithMany("ArtistProducts")
-                        .HasForeignKey("ProductId")
+                    b.HasOne("HandmadeShop.Models.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Artist");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("HandmadeShop.Models.Order", b =>
@@ -376,7 +367,7 @@ namespace HandmadeShop.Migrations
             modelBuilder.Entity("HandmadeShop.Models.Product", b =>
                 {
                     b.HasOne("HandmadeShop.Models.Category", "Category")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CatogoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -444,16 +435,6 @@ namespace HandmadeShop.Migrations
                     b.Navigation("Wishlist");
                 });
 
-            modelBuilder.Entity("HandmadeShop.Models.Artist", b =>
-                {
-                    b.Navigation("ArtistProducts");
-                });
-
-            modelBuilder.Entity("HandmadeShop.Models.Category", b =>
-                {
-                    b.Navigation("Products");
-                });
-
             modelBuilder.Entity("HandmadeShop.Models.HistoryOrders", b =>
                 {
                     b.Navigation("Orders");
@@ -466,8 +447,6 @@ namespace HandmadeShop.Migrations
 
             modelBuilder.Entity("HandmadeShop.Models.Product", b =>
                 {
-                    b.Navigation("ArtistProducts");
-
                     b.Navigation("OrderItems");
 
                     b.Navigation("Reviews");
