@@ -1,0 +1,15 @@
+a {
+    margin-left: 1 rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.image-upload {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

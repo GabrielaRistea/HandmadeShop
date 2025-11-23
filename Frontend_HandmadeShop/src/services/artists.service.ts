@@ -20,11 +20,21 @@ export class ArtistsService {
   //   return this.http.post<{ success: boolean }>(this.apiUrl, artistDto, {responseType: "json"});
   // }
 
-  postFormData(formData: FormData) {
-  return this.http.post(this.apiUrl, formData);
-}
+  public postFormData(formData: FormData) {
+    return this.http.post(this.apiUrl, formData);
+  }
 
+  public updateFormData(id: number | string, formData: FormData): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, formData);
+  }
 
+  public getById(id: number): Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+
+  public delete(id: number ): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
 
 
 }
