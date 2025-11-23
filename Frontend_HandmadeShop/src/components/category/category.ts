@@ -30,4 +30,19 @@ export class CategoryComponent {
       
     });
   }
+
+  loadProducts(){
+    this.categoriesService.get().subscribe(categories => {
+      this.categories = categories.map(a => ({
+        ...a,
+      }));
+    });
+  }
+
+  delete(categoryId: number){
+    this.categoriesService.delete(categoryId).subscribe(() => {
+      this.loadProducts();
+    });
+  }
+
 }

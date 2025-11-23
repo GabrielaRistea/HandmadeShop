@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Category, CategoryCreation } from '../../../DTOs/Category';
 import { CategoriesService } from '../../../services/categories.service';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,7 +19,7 @@ export class CategoryCreate {
   router = inject(Router);
 
   form = this.formBuilder.group ({
-    Name: ['']
+    Name: ['', Validators.required]
   });
 
   saveChanges (){

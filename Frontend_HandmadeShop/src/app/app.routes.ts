@@ -5,6 +5,7 @@ import { ArtistCreate } from '../components/artist/artist-create/artist-create';
 import { ArtistEdit } from '../components/artist/artist-edit/artist-edit';
 import { CategoryComponent } from '../components/category/category';
 import { CategoryCreate } from '../components/category/category-create/category-create';
+import { CategoryEdit } from '../components/category/category-edit/category-edit';
 
 export const routes: Routes = [
     {path:'', component: HomeComponent},
@@ -12,5 +13,7 @@ export const routes: Routes = [
     {path:'artist-create', component: ArtistCreate},
     {path:'artist-edit/:id', component: ArtistEdit},
     {path:'category', component: CategoryComponent},
-    {path:'category-create', component: CategoryCreate}
+    {path:'category-create', component: CategoryCreate},
+    {path:'category-edit/:id', component: CategoryEdit},
+
 ];
