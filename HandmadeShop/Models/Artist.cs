@@ -15,7 +15,7 @@ public class Artist
     [DisplayName("Imagine")]
     [NotMapped]
     public IFormFile? ImageFile { get; set; }
-    //public ICollection<ArtistProduct> ArtistProducts { get; set; }
-    public ICollection<Product> Products { get; set; }
+    public ICollection<ArtistProduct> ArtistProducts { get; set; }
+    //public ICollection<Product> Products { get; set; }
     
 }
