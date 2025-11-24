@@ -1,6 +1,11 @@
 export class ArtistDto {
-    id: number = 0;
-    Name: string = '';
+    artistID: number = 0;
+    name: string = '';
     Description: string = '';
     artistImage: number[] | null = null;
+}
+
+export class Artist {
+    artistID: number = 0;
+    artistName: string = '';
 }

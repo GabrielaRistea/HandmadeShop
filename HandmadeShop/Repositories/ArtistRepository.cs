@@ -14,8 +14,7 @@ public class ArtistRepository : IArtistRepository
     }
     public IEnumerable<Artist> GetAll()
     {
-        return _context.Artists
-            .Include(a => a.ArtistProducts);
+        return _context.Artists.ToList();
     }
     public void Create(Artist artist)
     {
@@ -41,8 +40,8 @@ public class ArtistRepository : IArtistRepository
     {
         return _context.Artists.FirstOrDefault(a => a.ArtistID == id);
     }
-    public List<ArtistProduct> getAllArtistProducts()
-    {
-       return _context.ArtistProducts.ToList();
-    }
+    //public List<ArtistProduct> getAllArtistProducts()
+    //{
+    //   return _context.ArtistProducts.ToList();
+    //}
 }

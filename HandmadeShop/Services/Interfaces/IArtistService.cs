@@ -11,6 +11,6 @@ public interface IArtistService
     void DeleteArtist(int id);
     bool ArtistExists(int id);
     Artist GetArtistById(int id);
-    List<ArtistProduct> getAllArtistProducts();
+    //List<ArtistProduct> getAllArtistProducts();
     
 }

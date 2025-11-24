@@ -29,17 +29,26 @@ public class ProductService : IProductService
 
         var newProduct = new Product()
         {
-            ProductID = productDto.Id,
+            ProductID = 0,
             Name = productDto.Name,
             Description = productDto.Description,
             Price = productDto.Price,
             Stock = productDto.Stock,
             ImageFile = productDto.ImageFile,
             ProductImage = productDto.ProductImage,
-            ArtistProducts = productDto.Artists.Select(a => new ArtistProduct() { ArtistId = a}).ToList(),
+            Artists = new List<Artist>(),
             CatogoryId = productDto.Category
         };
-        _productRepository.Create(newProduct);
+        
+        //if (productDto.Artists?.ToList() is null)
+        //{
+          //  _productRepository.Create(newProduct);
+
+        //}
+        //else
+        //{
+            _productRepository.Create(newProduct, productDto.Artists?.ToList() ?? new List<int>());
+        //}
         _productRepository.Save();
     }
     public async Task UpdateProductAsync(ProductDto productDto)
@@ -60,7 +69,7 @@ public class ProductService : IProductService
             Stock = productDto.Stock,
             ImageFile = productDto.ImageFile,
             ProductImage = productDto.ProductImage,
-            ArtistProducts = productDto.Artists.Select(a => new ArtistProduct() { ArtistId = a}).ToList(),
+            Artists = new List<Artist>(),
             CatogoryId = productDto.Category,
         };
         _productRepository.Update(newProduct);
@@ -87,9 +96,9 @@ public class ProductService : IProductService
     {
         return _productRepository.GetAll().ToList();
     }
-    public List<ArtistProduct> GetAllArtistProducts()
+    public List<Artist> GetAllArtists()
     {
-        return _productRepository.GetAllArtistProducts().ToList();
+        return _productRepository.GetAllArtist().ToList();
     }
     public List<Category> GetAllCategories()
     {

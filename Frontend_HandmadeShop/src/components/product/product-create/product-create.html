@@ -1,0 +1,53 @@
+<h2>Add Product</h2>
+
+<form [formGroup]="form" (ngSubmit)="saveChanges()">
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="Name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="Description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Price</mat-label>
+    <input matInput type="number" min="0" formControlName="Price" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Stock</mat-label>
+    <input matInput type="number" min="0" formControlName="Stock" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Category</mat-label>
+    <mat-select formControlName="CategoryName">
+      <mat-option *ngFor="let category of categories" [value]="category.categoryID">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Artists</mat-label>
+    <mat-select formControlName="ArtistName" multiple>
+      <mat-option *ngFor="let artist of artists" [value]="artist.artistID">
+        {{ artist.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="full-width">
+    <label>Product Image</label>
+    <input type="file" (change)="onFileSelected($event)" />
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" mat-flat-button color="primary">Save Product</button>
+    <a mat-stroked-button routerLink="/product">Cancel</a>
+  </div>
+
+</form>

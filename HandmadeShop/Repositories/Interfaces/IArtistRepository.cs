@@ -11,5 +11,5 @@ public interface IArtistRepository
     void Delete(Artist artist);
     void Save();
     Artist GetById(int id);
-    List<ArtistProduct> getAllArtistProducts();
+    //List<ArtistProduct> getAllArtistProducts();
 }

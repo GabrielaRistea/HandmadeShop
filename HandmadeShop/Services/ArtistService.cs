@@ -75,8 +75,8 @@ public class ArtistService : IArtistService
     {
         return _artistRepository.GetById(id);
     }
-    public List<ArtistProduct> getAllArtistProducts()
-    {
-        return _artistRepository.getAllArtistProducts().ToList();
-    }
+    //public List<ArtistProduct> getAllArtistProducts()
+    //{
+    //    return _artistRepository.getAllArtistProducts().ToList();
+    //}
 }

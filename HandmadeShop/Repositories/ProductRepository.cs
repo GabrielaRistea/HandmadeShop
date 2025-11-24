@@ -15,17 +15,18 @@ public class ProductRepository : IProductRepository
     public IEnumerable<Product> GetAll()
     {
         return _context.Products
-            .Include(ap => ap.ArtistProducts)
-            .ThenInclude(a => a.Artist)
+            .Include(a => a.Artists)
+            //.ThenInclude(a => a.Artist)
             .Include(c => c.Category)
             .Include(o => o.OrderItems)
             .Include(r => r.Reviews)
-            .Include(w => w.WishlistProducts);
+            .Include(w => w.WishlistProducts)
+            .ToList();
     }
 
-    public List<ArtistProduct> GetAllArtistProducts()
+    public List<Artist> GetAllArtist()
     {
-        return _context.ArtistProducts.ToList();
+        return _context.Artists.ToList();
     }
     public List<Review> GetAllReviews()
     {
@@ -42,8 +43,8 @@ public class ProductRepository : IProductRepository
     public Product GetById(int id)
     {
         return _context.Products
-            .Include(ap => ap.ArtistProducts)
-            .ThenInclude(a => a.Artist)
+            .Include(a => a.Artists)
+            //.ThenInclude(a => a.Artist)
             .Include(c => c.Category)
             .Include(o => o.OrderItems)
             .Include(r => r.Reviews)
@@ -76,6 +77,15 @@ public class ProductRepository : IProductRepository
     {
         _context.Products.Add(product);
     }
+        public void Create(Product product, List<int> artistIds)
+        {
+            var arttist = _context.Artists.Where(a => artistIds.Contains(a.ArtistID))
+                .ToList();
+            
+            product.Artists = arttist;
+            _context.Products.Add(product);
+        }
+
 
     public void Delete(Product product)
     {
