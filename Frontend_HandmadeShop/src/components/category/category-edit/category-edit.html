@@ -1,4 +1,4 @@
-<h2>Edit Category</h2>
+<h2>Edit Categorie</h2>
 
 <mat-card class="edit-card">
 
@@ -6,13 +6,13 @@
     <form [formGroup]="form" (ngSubmit)="saveChanges()">
 
       <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
+        <mat-label>Nume</mat-label>
         <input matInput formControlName="Name">
       </mat-form-field>
 
       <div class="buttons">
-        <button mat-flat-button color="primary" type="submit">Save Changes</button>
-        <a mat-stroked-button routerLink="/category">Cancel</a>
+        <button mat-flat-button color="primary" type="submit">Salveaza</button>
+        <a mat-stroked-button routerLink="/category">Anuleaza</a>
       </div>
 
     </form>

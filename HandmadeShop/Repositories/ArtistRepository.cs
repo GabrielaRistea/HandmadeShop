@@ -40,8 +40,5 @@ public class ArtistRepository : IArtistRepository
     {
         return _context.Artists.FirstOrDefault(a => a.ArtistID == id);
     }
-    //public List<ArtistProduct> getAllArtistProducts()
-    //{
-    //   return _context.ArtistProducts.ToList();
-    //}
+    
 }

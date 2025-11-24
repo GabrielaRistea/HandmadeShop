@@ -116,6 +116,52 @@ public class ProductService : IProductService
     {
         return _productRepository.GetAllWishlistProducts().ToList();
     }
-    
+
+    public List<Product> searchProduct(string name)
+    {
+        var product = _productRepository.GetAll();
+        
+            product = product.Where(p => p.Name != null ? p.Name.Contains(name) : true).ToList();
+        
+        return product.ToList();
+    }
+
+    public async Task<List<ProductDto>> ProductsByCategory(int id)
+    {
+        var products = _productRepository.GetProductByCategory(id);
+        return products.Select(p => new ProductDto 
+        {
+            Id = p.ProductID,
+            Name = p.Name,
+            Description = p.Description,
+            Price = p.Price,
+            Stock = p.Stock,
+            ProductImage = p.ProductImage,
+            ImageFile = p.ImageFile,
+            Category = p.CatogoryId,
+            CategoryName = p.Category?.Name ?? "Uncategorized",
+            Artists = p.Artists?.Select(a => a.ArtistID).ToList(),
+            ArtistNames = p.Artists?.Select(a => a.Name ).ToList() 
+        }).ToList();
+    }
+
+    public async Task<List<ProductDto>> ProductsByArtist(int id)
+    {
+        var products = _productRepository.GetProductByArtist(id);
+        return products.Select(p => new ProductDto 
+        {
+            Id = p.ProductID,
+            Name = p.Name,
+            Description = p.Description,
+            Price = p.Price,
+            Stock = p.Stock,
+            ProductImage = p.ProductImage,
+            ImageFile = p.ImageFile,
+            Category = p.CatogoryId,
+            CategoryName = p.Category?.Name ?? "Uncategorized",
+            Artists = p.Artists?.Select(a => a.ArtistID).ToList(),
+            ArtistNames = p.Artists?.Select(a => a.Name ).ToList() 
+        }).ToList();
+    }
     
 }

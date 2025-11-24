@@ -6,17 +6,17 @@
     <form [formGroup]="form" (ngSubmit)="saveChanges()">
 
       <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
+        <mat-label>Nume</mat-label>
         <input matInput formControlName="Name">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Description</mat-label>
+        <mat-label>Descriere</mat-label>
         <input matInput formControlName="Description">
       </mat-form-field>
 
       <div *ngIf="ArtistDto?.artistImage">
-        <p>Current image:</p>
+        <p>Imagine curenta:</p>
         <img 
             [src]="'data:image/png;base64,' + (ArtistDto?.artistImage || '')"
             class="artist-image"
@@ -27,8 +27,8 @@
       <input type="file" (change)="onFileSelected($event)">
 
       <div class="buttons">
-        <button mat-flat-button color="primary" type="submit">Save Changes</button>
-        <a mat-stroked-button routerLink="/artist">Cancel</a>
+        <button mat-flat-button color="primary" type="submit">Salveaza</button>
+        <a mat-stroked-button routerLink="/artist">Anuleaza</a>
       </div>
 
     </form>

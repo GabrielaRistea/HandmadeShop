@@ -15,7 +15,7 @@ import { ArtistsService } from '../../../services/artists.service';
 @Component({
   selector: 'app-product-create',
   imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule,
-    MatSelectModule, MatInputModule, FormsModule
+    MatSelectModule, MatInputModule, FormsModule, RouterLink
   ],
   templateUrl: './product-create.html',
   styleUrls: ['./product-create.scss'],

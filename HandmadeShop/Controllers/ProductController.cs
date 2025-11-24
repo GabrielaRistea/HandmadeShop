@@ -26,8 +26,23 @@ public class ProductController : ControllerBase
         var artist = _productService.GetAllArtists();
         var category = _productService.GetAllCategories();
         var reviews = _productService.GetAllReviews();
+        
+        
         return Ok(product);
     }
+
+    [HttpGet("by-product-name/{name}")]
+    [ProducesResponseType(typeof(List<ProductDto>), StatusCodes.Status200OK)]
+    public IActionResult SearchProduct(string name)
+    {
+        if (String.IsNullOrEmpty(name))
+        {
+            return NotFound();
+        }
+        var product = _productService.searchProduct(name).Select(p => mapProduct(p)).ToList();
+        return Ok(product);
+    }
+    
     [HttpGet("{id}")]
     public IActionResult GetById(int id)
     {
@@ -48,6 +63,30 @@ public class ProductController : ControllerBase
         return Ok(productDto);
 
     }
+
+    [HttpGet("by-category-id/{categoryId}")]
+    [ProducesResponseType(typeof(List<ProductDto>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetProductsByCategory(int categoryId)
+    {
+        if (categoryId == null)
+        {
+            return NotFound();
+        }
+        var products = await _productService.ProductsByCategory(categoryId);
+        return Ok(products);
+    }
+    
+    [HttpGet("by-artist-id/{artistId}")]
+    public async Task<IActionResult> GetProductsByArtist(int artistId) 
+    {
+        if (artistId == null)
+        {
+            return NotFound();
+        }
+        var products = await _productService.ProductsByArtist(artistId);
+        return Ok(products);
+    }    
+    
     [HttpPut("{id}")]
     public async Task<IActionResult> EditAsync(int id, [FromForm] ProductDto productDto)
     {
