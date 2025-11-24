@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-product',
   imports: [MatButtonModule, MatTableModule,
-      MatCardContent, MatCardTitle, MatCard, MatCardHeader, CommonModule, RouterLink],
+      MatCardContent, MatCardTitle, MatCard, MatCardHeader, CommonModule, RouterLink, MatCardActions],
   templateUrl: './product.html',
   styleUrl: './product.scss',
 })
@@ -19,7 +19,9 @@ export class ProductComponent {
   products: any[] = [];
   
   constructor( private productService: ProductsService) 
-  {}
+  {
+    this.loadProducts();
+  }
 
   ngOnInit() {
     this.productService.get().subscribe(products => {
@@ -30,6 +32,23 @@ export class ProductComponent {
         ArtistName: a.ArtistName ? a.ArtistName.join(', ') : "Unknown",
         imageSrc: a.productImage ? 'data:image/png;base64,' + a.productImage : null
       }));
+    });
+  }
+
+  loadProducts(){
+    this.productService.get().subscribe(products => {
+      this.products = products.map(a => ({
+        ...a,
+        // imageSrc 'data:image/png;base64,' + artist.artistImage;
+
+        imageSrc: a.productImage ? 'data:image/png;base64,' + a.productImage : null
+      }));
+    });
+  }
+
+  delete(productId: number){
+    this.productService.delete(productId).subscribe(() => {
+      this.loadProducts();
     });
   }
 

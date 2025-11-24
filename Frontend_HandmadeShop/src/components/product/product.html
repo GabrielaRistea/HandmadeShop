@@ -33,9 +33,9 @@
       <p>{{ product.artistNames }}</p>
     </mat-card-content>
 
-    <!-- <mat-card-actions>
-      <a [routerLink]="['/artist-edit', artist.artistID]" mat-stroked-button color="primary">Edit</a>
-      <button mat-stroked-button color="warn" (click)="delete(artist.artistID)">Delete</button>
-    </mat-card-actions> -->
+    <mat-card-actions>
+      <a [routerLink]="['/product-edit', product.id]" mat-stroked-button color="primary">Edit</a>
+      <button mat-stroked-button color="warn" (click)="delete(product.id)">Delete</button>
+    </mat-card-actions>
   </mat-card>
 </div>
