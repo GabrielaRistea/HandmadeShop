@@ -1,41 +1,44 @@
-<div class="artists-container">
+
+<div class="products-container">
   <div class="header">
-    <h2>Products</h2>
-    <a routerLink="/product-create" mat-flat-button color="primary">Add a new Product</a>
+    <h2>Produse</h2>
+    <a routerLink="/product-create" mat-flat-button color="primary">Adauga un produs</a>
   </div>
 
-  <mat-card class="artist-card" *ngFor="let product of products; let i = index">
-    <mat-card-header>
-      <mat-card-title>{{ product.name }}</mat-card-title>
-    </mat-card-header>
+  <div class="products-grid">
+    <mat-card class="product-card" *ngFor="let product of products">
+      
+      <div class="product-image-wrapper" *ngIf="product.imageSrc">
+        <img [src]="product.imageSrc" alt="{{ product.name }}" class="product-image">
+      </div>
 
-    <div class="artist-image-wrapper" *ngIf="product.imageSrc">
-      <img [src]="product.imageSrc" alt="{{ product.name }}" class="artist-image">
-    </div>
+      <mat-card-content>
+        <h3 class="product-name">{{ product.name }}</h3>
 
-    <mat-card-content>
-      <p>{{ product.description }}</p>
-    </mat-card-content>
+        <p class="product-price">
+          {{ product.price }} lei
+        </p>
 
-    <mat-card-content>
-      <p>{{ product.price }}</p>
-    </mat-card-content>
+        <p class="product-stock">Stoc: {{ product.stock }}</p>
+        <p class="product-category">Categorie: {{ product.categoryName }}</p>
+        <p class="product-artists">Artisti: {{ product.artistNames }}</p>
+        <p class="product-artists">Descriere: {{ product.description }}</p>
+      </mat-card-content>
 
-    <mat-card-content>
-      <p>{{ product.stock }}</p>
-    </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary">Adauga in cos</button>
+        <button mat-flat-button color="warn" aria-label="Add to wishlist">Favorite</button>
+        
+        <a [routerLink]="['/product-edit', product.id]"
+           mat-stroked-button color="primary">
+          Edit
+        </a>
 
-    <mat-card-content>
-      <p>{{ product.categoryName }}</p>
-    </mat-card-content>
+        <button mat-stroked-button color="warn" (click)="delete(product.id)">
+          Sterge
+        </button>
+      </mat-card-actions>
 
-    <mat-card-content>
-      <p>{{ product.artistNames }}</p>
-    </mat-card-content>
-
-    <mat-card-actions>
-      <a [routerLink]="['/product-edit', product.id]" mat-stroked-button color="primary">Edit</a>
-      <button mat-stroked-button color="warn" (click)="delete(product.id)">Delete</button>
-    </mat-card-actions>
-  </mat-card>
+    </mat-card>
+  </div>
 </div>

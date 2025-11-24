@@ -1,26 +1,27 @@
-
- <div class="artists-container">
+<div class="artists-container">
   <div class="header">
-    <h2>Artists</h2>
-    <a routerLink="/artist-create" mat-flat-button color="primary">Add a new Artist</a>
+    <h2>Artisti</h2>
+    <a routerLink="/artist-create" mat-flat-button color="primary">Adauga un artist nou</a>
   </div>
 
-  <mat-card class="artist-card" *ngFor="let artist of artists; let i = index">
-    <mat-card-header>
-      <mat-card-title>{{ artist.name }}</mat-card-title>
-    </mat-card-header>
+  <div class="artists-grid">
+    <mat-card class="artist-card" *ngFor="let artist of artists; let i = index">
+      <mat-card-header>
+        <mat-card-title>{{ artist.name }}</mat-card-title>
+      </mat-card-header>
 
-    <div class="artist-image-wrapper" *ngIf="artist.imageSrc">
-      <img [src]="artist.imageSrc" alt="{{ artist.name }}" class="artist-image">
-    </div>
+      <div class="artist-image-wrapper" *ngIf="artist.imageSrc">
+        <img [src]="artist.imageSrc" alt="{{ artist.name }}" class="artist-image">
+      </div>
 
-    <mat-card-content>
-      <p>{{ artist.description }}</p>
-    </mat-card-content>
+      <mat-card-content>
+        <p>{{ artist.description }}</p>
+      </mat-card-content>
 
-    <mat-card-actions>
-      <a [routerLink]="['/artist-edit', artist.artistID]" mat-stroked-button color="primary">Edit</a>
-      <button mat-stroked-button color="warn" (click)="delete(artist.artistID)">Delete</button>
-    </mat-card-actions>
-  </mat-card>
+      <mat-card-actions>
+        <a [routerLink]="['/artist-edit', artist.artistID]" mat-stroked-button color="primary">Edit</a>
+        <button mat-stroked-button color="warn" (click)="delete(artist.artistID)">Sterge</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

@@ -1,12 +1,12 @@
-<h2>Add category</h2>
+<h2>Adauga categorie</h2>
 
 <form (submit)="saveChanges()" [formGroup]="form">
     <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
+        <mat-label>Nume</mat-label>
         <input matInput [formControl]="form.controls.Name" />
     </mat-form-field>
     <div>
-        <button type="submit" mat-flat-button>Save Category</button>
-        <a mat-stroked-button routerLink="/category">Cancel</a>
+        <button type="submit" mat-flat-button>Salveaza</button>
+        <a mat-stroked-button routerLink="/category">Anuleaza</a>
     </div>
 </form>

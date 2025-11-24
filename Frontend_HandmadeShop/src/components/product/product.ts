@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-product',
   imports: [MatButtonModule, MatTableModule,
-      MatCardContent, MatCardTitle, MatCard, MatCardHeader, CommonModule, RouterLink, MatCardActions],
+      MatCardContent, MatCard, CommonModule, RouterLink, MatCardActions],
   templateUrl: './product.html',
   styleUrl: './product.scss',
 })

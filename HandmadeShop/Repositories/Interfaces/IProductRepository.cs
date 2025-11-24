@@ -20,4 +20,6 @@ public interface IProductRepository
     public List<WishlistProduct> GetAllWishlistProducts();
     public Product GetByIdWithRelatedEntities(int id);
     List<Category> GetAllCategories();
+    List<Product> GetProductByCategory(int id);
+    List<Product> GetProductByArtist(int id);
 }

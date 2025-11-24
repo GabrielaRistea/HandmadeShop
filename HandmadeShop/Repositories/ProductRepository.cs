@@ -1,4 +1,5 @@
 using HandmadeShop.Context;
+using HandmadeShop.DTOs;
 using HandmadeShop.Models;
 using HandmadeShop.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -91,4 +92,20 @@ public class ProductRepository : IProductRepository
     {
         _context.Products.Remove(product);
     }
+
+    public List<Product> GetProductByCategory(int id)
+    {
+        return _context.Products.Include(p => p.Artists)
+            .Include(p => p.Category)
+            .Where(p => p.CatogoryId == id).ToList();
+    }
+
+    public List<Product> GetProductByArtist(int id)
+    {
+        return _context.Products.Include(p => p.Category)
+            .Include(p => p.Artists)
+            .Where(p => p.Artists.Any(a => a.ArtistID == id))
+            .ToList();
+    }
+
 }

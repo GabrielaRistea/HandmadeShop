@@ -1,29 +1,29 @@
-<h2>Add Product</h2>
+<h2>Adauga Produs</h2>
 
 <form [formGroup]="form" (ngSubmit)="saveChanges()">
 
   <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Name</mat-label>
+    <mat-label>Nume</mat-label>
     <input matInput formControlName="Name" />
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Description</mat-label>
+    <mat-label>Descriere</mat-label>
     <textarea matInput formControlName="Description"></textarea>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Price</mat-label>
+    <mat-label>Pret</mat-label>
     <input matInput type="number" min="0" formControlName="Price" />
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Stock</mat-label>
+    <mat-label>Stoc</mat-label>
     <input matInput type="number" min="0" formControlName="Stock" />
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Category</mat-label>
+    <mat-label>Categorie</mat-label>
     <mat-select formControlName="CategoryName">
       <mat-option *ngFor="let category of categories" [value]="category.categoryID">
         {{ category.name }}
@@ -32,7 +32,7 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Artists</mat-label>
+    <mat-label>Artisti</mat-label>
     <mat-select formControlName="ArtistName" multiple>
       <mat-option *ngFor="let artist of artists" [value]="artist.artistID">
         {{ artist.name }}
@@ -41,13 +41,13 @@
   </mat-form-field>
 
   <div class="full-width">
-    <label>Product Image</label>
+    <label>Imagine Produs</label>
     <input type="file" (change)="onFileSelected($event)" />
   </div>
 
   <div class="form-actions">
-    <button type="submit" mat-flat-button color="primary">Save Product</button>
-    <a mat-stroked-button routerLink="/product">Cancel</a>
+    <button type="submit" mat-flat-button color="primary">Salveaza</button>
+    <a mat-stroked-button routerLink="/product">Anuleaza</a>
   </div>
 
 </form>

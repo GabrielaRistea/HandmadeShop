@@ -17,4 +17,8 @@ public interface IProductService
     bool ProductExists(int id);
     List<OrderItem> GetAllOrderItems();
     List<WishlistProduct> GetAllWishlistProducts();
+    List<Product> searchProduct(string name);
+    //ist<Product> ProductsByCategory(int id);
+    Task<List<ProductDto>> ProductsByCategory(int id);
+    Task<List<ProductDto>> ProductsByArtist(int id);
 }

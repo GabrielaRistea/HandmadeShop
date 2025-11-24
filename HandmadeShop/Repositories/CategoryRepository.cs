@@ -1,6 +1,7 @@
 using HandmadeShop.Context;
 using HandmadeShop.Models;
 using HandmadeShop.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace HandmadeShop.Repositories;
 
