@@ -8,6 +8,7 @@ import { CategoryCreate } from '../components/category/category-create/category-
 import { CategoryEdit } from '../components/category/category-edit/category-edit';
 import { ProductComponent } from '../components/product/product';
 import { ProductCreate } from '../components/product/product-create/product-create';
+import { ProductEdit } from '../components/product/product-edit/product-edit';
 
 export const routes: Routes = [
     {path:'', component: HomeComponent},
@@ -19,5 +20,6 @@ export const routes: Routes = [
     {path:'category-edit/:id', component: CategoryEdit},
     {path:'product', component: ProductComponent},
     {path:'product-create', component: ProductCreate},
+    {path:'product-edit/:id', component: ProductEdit},
 
 ];

@@ -12,16 +12,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { CategoriesService } from '../../../services/categories.service';
 import { ArtistsService } from '../../../services/artists.service';
 
-// interface Category {
-//   id: number;
-//   categoryName: string;
-// }
-
-// interface Artist {
-//   id: number;
-//   artistName: string;
-// }
-
 @Component({
   selector: 'app-product-create',
   imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule,
