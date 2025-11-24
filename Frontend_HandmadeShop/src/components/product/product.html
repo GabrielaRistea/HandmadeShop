@@ -1,0 +1,41 @@
+<div class="artists-container">
+  <div class="header">
+    <h2>Products</h2>
+    <a routerLink="/product-create" mat-flat-button color="primary">Add a new Product</a>
+  </div>
+
+  <mat-card class="artist-card" *ngFor="let product of products; let i = index">
+    <mat-card-header>
+      <mat-card-title>{{ product.name }}</mat-card-title>
+    </mat-card-header>
+
+    <div class="artist-image-wrapper" *ngIf="product.imageSrc">
+      <img [src]="product.imageSrc" alt="{{ product.name }}" class="artist-image">
+    </div>
+
+    <mat-card-content>
+      <p>{{ product.description }}</p>
+    </mat-card-content>
+
+    <mat-card-content>
+      <p>{{ product.price }}</p>
+    </mat-card-content>
+
+    <mat-card-content>
+      <p>{{ product.stock }}</p>
+    </mat-card-content>
+
+    <mat-card-content>
+      <p>{{ product.categoryName }}</p>
+    </mat-card-content>
+
+    <mat-card-content>
+      <p>{{ product.artistNames }}</p>
+    </mat-card-content>
+
+    <!-- <mat-card-actions>
+      <a [routerLink]="['/artist-edit', artist.artistID]" mat-stroked-button color="primary">Edit</a>
+      <button mat-stroked-button color="warn" (click)="delete(artist.artistID)">Delete</button>
+    </mat-card-actions> -->
+  </mat-card>
+</div>

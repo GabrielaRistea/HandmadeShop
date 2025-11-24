@@ -7,7 +7,7 @@ namespace HandmadeShop.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ProductController : Controller
+public class ProductController : ControllerBase
 {
     private readonly IProductService _productService;
     private readonly IArtistService _artistService;
@@ -23,7 +23,7 @@ public class ProductController : Controller
     public IActionResult GetAll()
     {
         var product = _productService.GetAllProducts().Select(p => mapProduct(p)).ToList();
-        var artistproduct = _productService.GetAllArtistProducts();
+        var artist = _productService.GetAllArtists();
         var category = _productService.GetAllCategories();
         var reviews = _productService.GetAllReviews();
         return Ok(product);
@@ -84,9 +84,9 @@ public class ProductController : Controller
             ProductImage = p.ProductImage,
             ImageFile = p.ImageFile,
             Category = p.CatogoryId,
-            CategoryName = p.Category.Name,
-            Artists = p.ArtistProducts?.Select(a => a.Artist?.ArtistID ?? 0).ToList() ?? [],
-            ArtistNames = p.ArtistProducts?.Select(a => a.Artist?.Name ?? "").ToList() ?? []
+            CategoryName = p.Category?.Name ?? "Uncategorized",
+            Artists = p.Artists?.Select(a => a?.ArtistID ?? 0).ToList() ?? [],
+            ArtistNames = p.Artists?.Select(a => a?.Name ?? "").ToList() ?? []
         };
     }
 
@@ -101,7 +101,7 @@ public class ProductController : Controller
             Stock = productDto.Stock,
             ImageFile = productDto.ImageFile,
             ProductImage = productDto.ProductImage,
-            ArtistProducts = productDto.Artists.Select(a => new ArtistProduct() { ArtistId = a }).ToList(),
+            Artists = new List<Artist>(),
             CatogoryId = productDto.Category
         };
     }

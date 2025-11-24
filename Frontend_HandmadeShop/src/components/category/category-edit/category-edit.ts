@@ -47,7 +47,7 @@ export class CategoryEdit implements OnInit{
     if (!this.Category) return;
     const category: Category = {
        ...this.Category, 
-      Name: this.form.value.Name!            
+      name: this.form.value.Name!            
     };
     this.categoriesService.update(this.id.toString(), category).subscribe(() => {
         this.router.navigate(['/category']);

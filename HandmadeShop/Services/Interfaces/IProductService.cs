@@ -11,7 +11,7 @@ public interface IProductService
     void DeleteProduct(int id);
     Product GetProductAndRelatedById(int id);
     List<Product> GetAllProducts();
-    List<ArtistProduct> GetAllArtistProducts();
+    List<Artist> GetAllArtists();
     List<Category> GetAllCategories();
     List<Review> GetAllReviews();
     bool ProductExists(int id);
