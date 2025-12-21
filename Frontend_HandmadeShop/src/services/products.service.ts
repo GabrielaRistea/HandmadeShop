@@ -35,4 +35,11 @@ export class ProductsService {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 
+  public getByCategoryId(categoryId: number): Observable<ProductDto[]> {
+    return this.http.get<ProductDto[]>(`${this.apiUrl}/by-category-id/${categoryId}`);
+  }
+
+  public getByArtistId(artistId: number): Observable<ProductDto[]> {
+    return this.http.get<ProductDto[]>(`${this.apiUrl}/by-artist-id/${artistId}`);
+  }
 }
