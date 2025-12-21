@@ -11,7 +11,11 @@
       </mat-card-header>
 
       <div class="artist-image-wrapper" *ngIf="artist.imageSrc">
+        <a [routerLink]="['/product/by-artist', artist.artistID]" style="text-decoration: none; color: inherit; font-weight: bold;">
+                   
+                
         <img [src]="artist.imageSrc" alt="{{ artist.name }}" class="artist-image">
+        </a>
       </div>
 
       <mat-card-content>
