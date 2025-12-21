@@ -1,5 +1,5 @@
 <mat-toolbar>
-    <span>
+    <div style="display: flex; flex-direction: row; align-items: center; width: 100%;">
         <button [routerLink]="['']" mat-button="outlined">
             <mat-icon>flare</mat-icon> Handmade Store
         </button>
@@ -9,8 +9,19 @@
         <button [routerLink]="['/category']" mat-button>
             Categorii
         </button>
-        <button [routerLink]="['/product']" mat-button>
+        <button mat-button (click)="resetSearch()">
             Produse
         </button>
-    </span>
+        <form (ngSubmit)="onSearch()" style="display: flex; margin-left: 15px;">
+            <input 
+                class="form-control me-2" 
+                type="search" 
+                placeholder="Cauta produse..." 
+                aria-label="Search"
+                [(ngModel)]="searchTerm" 
+                name="search"
+            >
+            <button class="btn btn-outline-warning" type="submit">Cauta</button>
+        </form>
+    </div>
 </mat-toolbar>
