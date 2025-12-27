@@ -1,6 +1,7 @@
 using HandmadeShop.DTOs;
 using HandmadeShop.Models;
 using HandmadeShop.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HandmadeShop.Controllers;
@@ -54,6 +55,7 @@ public class ProductController : ControllerBase
         return Ok(mapProduct(product));
     }
     [HttpPost]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Create([FromForm] ProductDto productDto)
     {
         var products = mapProduct(productDto);
@@ -88,6 +90,7 @@ public class ProductController : ControllerBase
     }    
     
     [HttpPut("{id}")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> EditAsync(int id, [FromForm] ProductDto productDto)
     {
         if (id != productDto.Id)
@@ -101,6 +104,7 @@ public class ProductController : ControllerBase
 
     }
     [HttpDelete("{id}")]
+    [Authorize(Roles = "admin")]
     public IActionResult Delete(int id)
     {
         var product = _productService.GetProductById(id);

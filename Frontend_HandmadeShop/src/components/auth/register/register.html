@@ -1,0 +1,37 @@
+<div class="auth-wrapper">
+  <mat-card class="auth-card">
+    <mat-card-header>
+      <mat-card-title class="auth-title">Cont Nou</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form #regForm="ngForm" (ngSubmit)="onRegister()">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" name="email" [(ngModel)]="registerModel.email" required email>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Parola</mat-label>
+          <input matInput type="password" name="password" [(ngModel)]="registerModel.password" required minlength="6">
+          <mat-hint>Minim 6 caractere</mat-hint>
+        </mat-form-field>
+
+        <button mat-raised-button color="accent" class="full-width-btn" type="submit" [disabled]="!regForm.valid">
+          CREEAZA CONT
+        </button>
+      </form>
+      <div *ngIf="errorMessages" class="error-msg" style="color: red; margin-top: 10px; text-align: center;">
+        {{ errorMessages }}
+      </div>
+
+      <div *ngIf="successMessage" style="color: green; margin-top: 10px; text-align: center;">
+        {{ successMessage }}
+      </div>
+    </mat-card-content>
+
+    <mat-card-footer class="auth-footer">
+      <p>Ai deja cont? <a [routerLink]="['/login']">Conecteaza-te</a></p>
+    </mat-card-footer>
+  </mat-card>
+</div>

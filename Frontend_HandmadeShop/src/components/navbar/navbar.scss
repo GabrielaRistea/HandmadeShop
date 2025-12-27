@@ -1,0 +1,18 @@
+.auth-actions {
+  display: flex;
+  gap: 8px; 
+  align-items: center; 
+  height: 100%; 
+}
+
+.user-greeting {
+  font-size: 0.85rem;    
+  color: #e0e0e0;      
+  font-weight: 300;    
+  white-space: nowrap;   
+
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

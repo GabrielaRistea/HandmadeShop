@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -6,6 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 import { SearchService } from '../../services/search.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./navbar.scss'],
 })
 export class Navbar {
+  public authService = inject(AuthService);
+
   searchTerm: string = '';
 
   constructor(private searchService: SearchService, private router: Router) {}
@@ -35,4 +38,9 @@ export class Navbar {
       this.searchService.updateSearchTerm(this.searchTerm);
     });
   }
+
+  onLogout() {
+    this.authService.logout(); 
+  }
+
 }

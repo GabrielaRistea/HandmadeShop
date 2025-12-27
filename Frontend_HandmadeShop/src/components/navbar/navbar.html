@@ -23,5 +23,27 @@
             >
             <button class="btn btn-outline-warning" type="submit">Cauta</button>
         </form>
+        <!-- <span style="flex: 1 1 auto;"></span> -->
+         <span class="spacer"></span>
+
+        <div class="auth-group">
+        @if (!authService.isLoggedIn()) {
+            <button [routerLink]="['/register']" mat-button color="warn">
+            Inregistreaza-te
+            </button>
+            <button [routerLink]="['/login']" mat-button color="warn">
+            Conecteaza-te
+            </button>
+        } @else {
+            @if (authService.currentUser()) {
+            <span class="user-greeting">
+                Salut, {{ authService.currentUser().email }}!
+            </span>
+            }
+            <button (click)="onLogout()" mat-button color="warn">
+            <mat-icon>logout</mat-icon> Deconecteaza-te
+            </button>
+        }
+        </div>
     </div>
 </mat-toolbar>

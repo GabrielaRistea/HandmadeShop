@@ -1,7 +1,9 @@
 <div class="artists-container">
   <div class="header">
     <h2>Artisti</h2>
+    @if (authService.isAdmin()) {
     <a routerLink="/artist-create" mat-flat-button color="primary">Adauga un artist nou</a>
+    }
   </div>
 
   <div class="artists-grid">
@@ -22,10 +24,12 @@
         <p>{{ artist.description }}</p>
       </mat-card-content>
 
+      @if (authService.isAdmin()) {
       <mat-card-actions>
         <a [routerLink]="['/artist-edit', artist.artistID]" mat-stroked-button color="primary">Edit</a>
         <button mat-stroked-button color="warn" (click)="delete(artist.artistID)">Sterge</button>
       </mat-card-actions>
+    }
     </mat-card>
   </div>
 </div>

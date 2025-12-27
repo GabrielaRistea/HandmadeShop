@@ -1,5 +1,6 @@
 using HandmadeShop.Models;
 using HandmadeShop.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,6 +45,7 @@ namespace HandmadeShop.Controllers
 
         // POST api/<CategoryController>
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public IActionResult Create([FromBody] Category category)
         {
             var categories = _categoryService.getAllCategories();
@@ -54,6 +56,7 @@ namespace HandmadeShop.Controllers
 
         // PUT api/<CategoryController>/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult Edit (int id, [FromBody] Category category)
         {
             if (id != category.CategoryID)
@@ -69,6 +72,7 @@ namespace HandmadeShop.Controllers
 
         // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
             var category = _categoryService.GetCategoryById(id);

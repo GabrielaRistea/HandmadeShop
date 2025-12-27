@@ -3,6 +3,7 @@ using System;
 using HandmadeShop.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HandmadeShop.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20251226195434_makecollnullable")]
+    partial class makecollnullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,6 +241,12 @@ namespace HandmadeShop.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");

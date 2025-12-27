@@ -1,6 +1,7 @@
 using HandmadeShop.DTOs;
 using HandmadeShop.Models;
 using HandmadeShop.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,6 +41,7 @@ public class ArtistController : ControllerBase
     }
     
     [HttpPost]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Create([FromForm] ArtistDto artistDto)
     {
         var artists = _artistService.GetAllArtists();
@@ -51,6 +53,7 @@ public class ArtistController : ControllerBase
     }
     
     [HttpPut("{id}")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> EditAsync(int id, [FromForm] ArtistDto artistDto)
     {
         if (id != artistDto.Id)
@@ -65,6 +68,7 @@ public class ArtistController : ControllerBase
     }
     
     [HttpDelete("{id}")]
+    [Authorize(Roles = "admin")]
     public IActionResult Delete(int id)
     {
         var artist = _artistService.GetArtistById(id);

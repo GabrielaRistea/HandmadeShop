@@ -7,6 +7,7 @@ import { MatCardActions, MatCardContent, MatCardTitle, MatCard, MatCardHeader } 
 import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SearchService } from '../../services/search.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-product',
@@ -19,6 +20,7 @@ export class ProductComponent {
   ProductsService = inject(ProductsService);
   products: any[] = [];
   private route = inject(ActivatedRoute);
+  public authService = inject(AuthService);
   
   constructor( private productService: ProductsService, 
     private searchService: SearchService) 

@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-artist',
@@ -17,7 +18,7 @@ export class ArtistComponent {
  
   ArtistsService = inject(ArtistsService);
   artists: any[] = [];
-  
+  public authService = inject(AuthService);
 
 constructor(
   private artistService: ArtistsService
