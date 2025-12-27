@@ -12,7 +12,7 @@ public class Order
     public float TotalAmount { get; set; }
     public ICollection<OrderItem> OrderItems { get; set; }
     [ForeignKey(nameof(User))]
-    public int IdUser { get; set; }
+    public string IdUser { get; set; }
     public User User { get; set; }
 
     [ForeignKey(nameof(HistoryOrder))]

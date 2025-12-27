@@ -2,8 +2,12 @@ using HandmadeShop.Context;
 using HandmadeShop.Repositories;
 using HandmadeShop.Repositories.Interfaces;
 using HandmadeShop.Services;
+using HandmadeShop.Models;
 using HandmadeShop.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi;
+using Microsoft.OpenApi.Models;
 
 namespace HandmadeShop;
 
@@ -19,7 +23,43 @@ public class Program
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         //builder.Services.AddOpenApi();
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        //builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "eShop API", Version = "v1" });
+
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+                In = ParameterLocation.Header,
+                Description = "Enter your JWT token like: Bearer <token>"
+            });
+
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                            { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+                    },
+                    Array.Empty<string>()
+                }
+            });
+        });
+       
+        
+        
+        builder.Services.AddAuthorization();
+                builder.Services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme);
+        
+                builder.Services.AddIdentityCore<User>()
+                    .AddRoles<IdentityRole>()
+                    .AddEntityFrameworkStores<ShopContext>()
+                    .AddApiEndpoints();
         
         builder.Services.AddDbContext<ShopContext>(
             optionsBuilder =>
@@ -59,11 +99,13 @@ public class Program
 
         app.UseHttpsRedirection();
 
+     
+        
         app.UseCors();
 
         app.UseAuthorization();
 
-
+        app.MapIdentityApi<User>();
         app.MapControllers();
 
         app.Run();

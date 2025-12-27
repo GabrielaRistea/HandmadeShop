@@ -1,9 +1,10 @@
 using HandmadeShop.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace HandmadeShop.Context;
 
-public class ShopContext : DbContext
+public class ShopContext : IdentityDbContext<User>
 {
     public ShopContext(DbContextOptions<ShopContext> options) : base(options) { }
     public DbSet<User> Users { get; set; }
@@ -14,7 +15,7 @@ public class ShopContext : DbContext
     public DbSet<Category> Categories { get; set; }
     public DbSet<HistoryOrders>  HistoryOrders { get; set; }
     public DbSet<Review> Reviews { get; set; }
-    public DbSet<UserRole> UserRoles { get; set; }
+    //public DbSet<UserRole> UserRoles { get; set; }
     public DbSet<Wishlist> Wishlists { get; set; }
     public DbSet<WishlistProduct> WishlistProducts { get; set; }
     public DbSet<Artist> Artists { get; set; }

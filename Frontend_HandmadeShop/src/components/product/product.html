@@ -2,7 +2,9 @@
 <div class="products-container">
   <div class="header">
     <h2>Produse</h2>
+    @if (authService.isAdmin()) {
     <a routerLink="/product-create" mat-flat-button color="primary">Adauga un produs</a>
+    }
   </div>
 
   <div class="products-grid">
@@ -28,7 +30,7 @@
       <mat-card-actions>
         <button mat-flat-button color="primary">Adauga in cos</button>
         <button mat-flat-button color="warn" aria-label="Add to wishlist">Favorite</button>
-        
+        @if (authService.isAdmin()) {
         <a [routerLink]="['/product-edit', product.id]"
            mat-stroked-button color="primary">
           Edit
@@ -37,6 +39,7 @@
         <button mat-stroked-button color="warn" (click)="delete(product.id)">
           Sterge
         </button>
+      }
       </mat-card-actions>
 
     </mat-card>

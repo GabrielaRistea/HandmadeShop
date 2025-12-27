@@ -9,6 +9,8 @@ import { CategoryEdit } from '../components/category/category-edit/category-edit
 import { ProductComponent } from '../components/product/product';
 import { ProductCreate } from '../components/product/product-create/product-create';
 import { ProductEdit } from '../components/product/product-edit/product-edit';
+import { LoginComponent } from '../components/auth/login/login';
+import { RegisterComponent } from '../components/auth/register/register';
 
 export const routes: Routes = [
     {path:'', component: HomeComponent},
@@ -23,5 +25,7 @@ export const routes: Routes = [
     {path:'product-edit/:id', component: ProductEdit},
     {path: 'product/by-category/:id', component: ProductComponent},
     {path: 'product/by-artist/:id', component: ProductComponent},
+    {path: 'login', component: LoginComponent},
+    {path: 'register', component: RegisterComponent},
 
 ];

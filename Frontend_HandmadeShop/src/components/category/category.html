@@ -1,15 +1,14 @@
 <h2>Categorii</h2>
 
-<a routerLink="/category-create" mat-flat-button color="primary">
+@if (authService.isAdmin()) {
+<a routerLink="/category-create" mat-flat-button color="primary" style="margin-bottom: 15px;">
     Adauga o categorie noua
 </a>
-@if (categories){
-    <table mat-table [dataSource]="categories" class="mat-elevation-z8">
-        <!-- <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>Nume</th>
-            <td mat-cell *matCellDef="let category">{{category.name}}</td>
-        </ng-container> -->
+}
 
+@if (categories) {
+    <table mat-table [dataSource]="categories" class="mat-elevation-z8">
+        
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Nume</th>
             <td mat-cell *matCellDef="let category">
@@ -19,17 +18,18 @@
             </td>
         </ng-container>
 
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef>Actiuni</th>
-            <td mat-cell *matCellDef="let category">
-                <a mat-stroked-button color="primary" [routerLink]="['/category-edit', category.categoryID]">Edit</a>
-                <button mat-stroked-button color="warn" (click)="delete(category.categoryID)">Sterge</button>
-            </td>
-        </ng-container>
+        @if (authService.isAdmin()) {
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actiuni</th>
+                <td mat-cell *matCellDef="let category">
+                    <a mat-stroked-button color="primary" [routerLink]="['/category-edit', category.categoryID]">Edit</a>
+                    <button mat-stroked-button color="warn" (click)="delete(category.categoryID)">Sterge</button>
+                </td>
+            </ng-container>
+        }
 
-        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
-
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay()"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay()"></tr>
+        
     </table>
-
 }

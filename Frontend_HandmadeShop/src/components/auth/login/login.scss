@@ -1,0 +1,39 @@
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; // Centrare verticală față de viewport
+  padding: 20px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px; // Lățimea maximă a casetei
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 8px !important;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.auth-title {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #3f51b5;
+  font-weight: bold;
+}
+
+.full-width-btn {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+}
+
+.auth-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+}
