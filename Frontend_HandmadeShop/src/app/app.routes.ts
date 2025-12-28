@@ -11,6 +11,7 @@ import { ProductCreate } from '../components/product/product-create/product-crea
 import { ProductEdit } from '../components/product/product-edit/product-edit';
 import { LoginComponent } from '../components/auth/login/login';
 import { RegisterComponent } from '../components/auth/register/register';
+import { WishlistComponent } from '../components/wishlist/wishlist';
 
 export const routes: Routes = [
     {path:'', component: HomeComponent},
@@ -27,5 +28,6 @@ export const routes: Routes = [
     {path: 'product/by-artist/:id', component: ProductComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
+    {path: 'wishlist', component: WishlistComponent},
 
 ];

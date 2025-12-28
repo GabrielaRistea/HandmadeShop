@@ -17,7 +17,7 @@ public interface IProductRepository
     //List<Category> GetProductsByCategory(int categoryId);
     List<Review> GetAllReviews();
     List<OrderItem> GetAllOrderItems();
-    public List<WishlistProduct> GetAllWishlistProducts();
+    //public List<WishlistProduct> GetAllWishlistProducts();
     public Product GetByIdWithRelatedEntities(int id);
     List<Category> GetAllCategories();
     List<Product> GetProductByCategory(int id);

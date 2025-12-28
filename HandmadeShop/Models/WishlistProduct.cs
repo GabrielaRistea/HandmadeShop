@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+/*using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HandmadeShop.Models;
@@ -13,4 +13,4 @@ public class WishlistProduct
     [ForeignKey(nameof(Wishlist))]
     public int WishlistId { get; set; }
     public Wishlist Wishlist { get; set; } 
-}
+}*/

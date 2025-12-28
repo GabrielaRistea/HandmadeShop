@@ -35,11 +35,15 @@
             Conecteaza-te
             </button>
         } @else {
+            <button mat-icon-button routerLink="/wishlist" matTooltip="Favorite">
+            <mat-icon>favorite</mat-icon>
+            </button>
             @if (authService.currentUser()) {
             <span class="user-greeting">
                 Salut, {{ authService.currentUser().email }}!
             </span>
             }
+            
             <button (click)="onLogout()" mat-button color="warn">
             <mat-icon>logout</mat-icon> Deconecteaza-te
             </button>

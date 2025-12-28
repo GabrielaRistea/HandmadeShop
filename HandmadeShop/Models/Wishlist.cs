@@ -10,5 +10,6 @@ public class Wishlist
     [ForeignKey(nameof(User))]
     public string UserId { get; set; }
     public User User { get; set; }
-    public ICollection<WishlistProduct> WishlistProducts { get; set; }
+    //public ICollection<WishlistProduct> WishlistProducts { get; set; }
+    public ICollection<Product> Products { get; set; }
 }
