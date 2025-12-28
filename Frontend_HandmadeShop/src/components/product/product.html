@@ -29,7 +29,14 @@
 
       <mat-card-actions>
         <button mat-flat-button color="primary">Adauga in cos</button>
-        <button mat-flat-button color="warn" aria-label="Add to wishlist">Favorite</button>
+        <!-- <button mat-flat-button color="warn" aria-label="Add to wishlist">Favorite</button> -->
+         <button mat-flat-button 
+            color="warn" 
+            aria-label="Add to wishlist" 
+            (click)="addToWishlist(product.id)">
+            <mat-icon>favorite</mat-icon>
+            Favorite
+         </button>
         @if (authService.isAdmin()) {
         <a [routerLink]="['/product-edit', product.id]"
            mat-stroked-button color="primary">

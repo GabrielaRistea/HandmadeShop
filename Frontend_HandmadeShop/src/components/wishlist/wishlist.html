@@ -1,0 +1,31 @@
+<div class="products-container">
+  <div class="header">
+    <h2>Favoritele mele</h2>
+    <a routerLink="/product" mat-stroked-button color="primary">Inapoi la magazin</a>
+  </div>
+
+  <div *ngIf="products.length === 0" class="empty-wishlist">
+    <p>Nu ai adaugat inca niciun produs la favorite.</p>
+  </div>
+
+  <div class="products-grid">
+    <mat-card class="product-card" *ngFor="let product of products">
+      
+      <div class="product-image-wrapper" *ngIf="product.imageSrc">
+        <img [src]="product.imageSrc" [alt]="product.Name" class="product-image">
+      </div>
+
+      <mat-card-content>
+        <h3 class="product-name">{{ product.name }}</h3>
+        <p class="product-price">{{ product.price }} lei</p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-flat-button color="warn" (click)="removeFromWishlist(product.id)">
+          Sterge
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </div>
+</div>

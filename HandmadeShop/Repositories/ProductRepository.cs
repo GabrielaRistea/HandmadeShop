@@ -21,7 +21,7 @@ public class ProductRepository : IProductRepository
             .Include(c => c.Category)
             .Include(o => o.OrderItems)
             .Include(r => r.Reviews)
-            .Include(w => w.WishlistProducts)
+            .Include(w => w.Wishlists)
             .ToList();
     }
 
@@ -37,10 +37,10 @@ public class ProductRepository : IProductRepository
     {
         return _context.OrderItems.ToList();
     }
-    public List<WishlistProduct> GetAllWishlistProducts() 
+    /*public List<WishlistProduct> GetAllWishlistProducts() 
     {
         return _context.WishlistProducts.ToList();
-    }
+    }*/
     public Product GetById(int id)
     {
         return _context.Products
@@ -49,7 +49,7 @@ public class ProductRepository : IProductRepository
             .Include(c => c.Category)
             .Include(o => o.OrderItems)
             .Include(r => r.Reviews)
-            .Include(w => w.WishlistProducts).FirstOrDefault(p => p.ProductID == id);
+            .Include(w => w.Wishlists).FirstOrDefault(p => p.ProductID == id);
     }
     public void Save()
     {

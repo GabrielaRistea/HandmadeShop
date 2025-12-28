@@ -24,5 +24,6 @@ public class Product
     public Category Category { get; set; }
     //public ICollection<ArtistProduct> ArtistProducts { get; set; }
     public ICollection<Artist> Artists { get; set; }
-    public ICollection<WishlistProduct> WishlistProducts { get; set; }
+    //public ICollection<WishlistProduct> WishlistProducts { get; set; }
+    public ICollection<Wishlist> Wishlists { get; set; }
 }

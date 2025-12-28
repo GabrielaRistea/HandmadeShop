@@ -17,7 +17,7 @@ public class ShopContext : IdentityDbContext<User>
     public DbSet<Review> Reviews { get; set; }
     //public DbSet<UserRole> UserRoles { get; set; }
     public DbSet<Wishlist> Wishlists { get; set; }
-    public DbSet<WishlistProduct> WishlistProducts { get; set; }
+    //public DbSet<WishlistProduct> WishlistProducts { get; set; }
     public DbSet<Artist> Artists { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -8,11 +8,13 @@ import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SearchService } from '../../services/search.service';
 import { AuthService } from '../../services/auth.service';
+import { WishlistService } from '../../services/wishlist.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-product',
   imports: [MatButtonModule, MatTableModule,
-      MatCardContent, MatCard, CommonModule, RouterLink, MatCardActions],
+      MatCardContent, MatCard, CommonModule, RouterLink, MatCardActions, MatIconModule],
   templateUrl: './product.html',
   styleUrl: './product.scss',
 })
@@ -21,6 +23,7 @@ export class ProductComponent {
   products: any[] = [];
   private route = inject(ActivatedRoute);
   public authService = inject(AuthService);
+  private wishlistService = inject(WishlistService);
   
   constructor( private productService: ProductsService, 
     private searchService: SearchService) 
@@ -28,17 +31,16 @@ export class ProductComponent {
     //this.loadProducts();
   }
 
-  // ngOnInit() {
-  //   this.productService.get().subscribe(products => {
-  //     this.products = products.map(a => ({
-  //       ...a,
-  //       // imageSrc 'data:image/png;base64,' + artist.artistImage;
-  //       CategoryName: a.CategoryName, 
-  //       ArtistName: a.ArtistName ? a.ArtistName.join(', ') : "Unknown",
-  //       imageSrc: a.productImage ? 'data:image/png;base64,' + a.productImage : null
-  //     }));
-  //   });
-  // }
+  addToWishlist(productId: number) {
+    this.wishlistService.add(productId).subscribe({
+      next: (response) => {
+        alert(response.message); 
+      },
+      error: (err) => {
+        alert(err.error.message || 'A apărut o eroare.');
+      }
+    });
+  }
 
   ngOnInit() {
 

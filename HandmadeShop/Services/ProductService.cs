@@ -112,10 +112,10 @@ public class ProductService : IProductService
     {
         return _productRepository.GetAllOrderItems().ToList();
     }
-    public List<WishlistProduct> GetAllWishlistProducts()
+    /*public List<WishlistProduct> GetAllWishlistProducts()
     {
         return _productRepository.GetAllWishlistProducts().ToList();
-    }
+    }*/
 
     public List<Product> searchProduct(string name)
     {
