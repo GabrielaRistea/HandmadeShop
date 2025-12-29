@@ -1,0 +1,79 @@
+<div class="container mt-4" *ngIf="product">
+  <div class="row">
+    <h1>{{ product.name }}</h1>
+    <div class="col-md-6">
+      <img [src]="product.imageSrc" class="img-fluid rounded" *ngIf="product.imageSrc">
+    </div>
+    <div class="col-md-6">
+      <!-- <h1>{{ product.name }}</h1> -->
+      <p class="h3 text-success" color="warn">{{ product.price }} lei</p>
+      <p>{{ product.description }}</p>
+      <p class="badge bg-info text-dark">Categorie: {{ product.categoryName }}</p>
+      <p class="badge bg-info text-dark">Artisti: {{ product.artistNames }}</p>
+    </div>
+  </div>
+
+  <hr class="my-5">
+
+  <div class="reviews-section">
+    <h3>Recenzii Utilizatori ({{ reviews.length }})</h3>
+    
+    <div *ngFor="let r of reviews" class="card mb-3 p-3">
+      <div class="d-flex justify-content-between">
+        <strong>{{ r.userName }}</strong>
+        <span class="text-warning">⭐ {{ r.rating }}/5</span>
+      </div>
+      <p>{{ r.comm }}</p>
+    </div>
+
+    <div *ngIf="reviews.length === 0" class="text-muted">
+      Nu sunt recenzii pentru acest produs.
+    </div>
+
+    <hr class="my-4">
+
+    <div class="add-review-box p-4 border rounded bg-light" *ngIf="authService.isLoggedIn()">
+      <!-- <mat-card class="review-form-card shadow-sm"> -->
+  <mat-card-header style = "max-width: 600px; margin: 20px 0; padding: 15px;">
+    <mat-card-title>Lasă o recenzie</mat-card-title>
+    <!-- <mat-card-subtitle>Părerea ta contează pentru noi!</mat-card-subtitle> -->
+  </mat-card-header>
+
+  <mat-card-content class="mt-3">
+    <div class="review-form-container">
+      
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Nota ta</mat-label>
+        <mat-select [(ngModel)]="newReview.rating">
+          <mat-option [value]="5">⭐⭐⭐⭐⭐ - Excelent</mat-option>
+          <mat-option [value]="4">⭐⭐⭐⭐ - Bun</mat-option>
+          <mat-option [value]="3">⭐⭐⭐ - Mediu</mat-option>
+          <mat-option [value]="2">⭐⭐ - Slab</mat-option>
+          <mat-option [value]="1">⭐ - Foarte slab</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Comentariul tău</mat-label>
+        <textarea 
+          matInput 
+          [(ngModel)]="newReview.comm" 
+          rows="4" 
+          placeholder="Spune-ne ce ți-a plăcut la acest produs...">
+        </textarea>
+      </mat-form-field>
+
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button 
+      mat-flat-button 
+      color="primary" 
+      (click)="submitReview()" 
+      [disabled]="!newReview.comm">
+      <mat-icon>send</mat-icon> Trimite Recenzia
+    </button>
+  </mat-card-actions>
+<!-- </mat-card> -->
+</div>

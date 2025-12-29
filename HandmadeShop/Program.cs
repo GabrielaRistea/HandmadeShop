@@ -74,6 +74,8 @@ public class Program
         builder.Services.AddScoped<IProductService, ProductService>();
         builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
         builder.Services.AddScoped<IWishlistService, WishlistService>();
+        builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+        builder.Services.AddScoped<IReviewService, ReviewService>();
 
         var allowedOrigins = builder.Configuration.GetValue<string>("allowedOrigins")!.Split(",");
         
