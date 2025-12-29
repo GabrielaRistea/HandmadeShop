@@ -9,9 +9,10 @@
 
   <div class="products-grid">
     <mat-card class="product-card" *ngFor="let product of products">
-      
-      <div class="product-image-wrapper" *ngIf="product.imageSrc">
-        <img [src]="product.imageSrc" alt="{{ product.name }}" class="product-image">
+      <div class="product-clickable-area" [routerLink]="['/product-details', product.id]" style="cursor: pointer;">
+        <div class="product-image-wrapper" *ngIf="product.imageSrc">
+          <img [src]="product.imageSrc" alt="{{ product.name }}" class="product-image">
+        </div>
       </div>
 
       <mat-card-content>
