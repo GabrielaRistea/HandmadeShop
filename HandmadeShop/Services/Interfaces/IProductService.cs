@@ -21,4 +21,6 @@ public interface IProductService
     //ist<Product> ProductsByCategory(int id);
     Task<List<ProductDto>> ProductsByCategory(int id);
     Task<List<ProductDto>> ProductsByArtist(int id);
+    List<Product> GetAllProductsSortedByPrice(bool ascending = true);
+    Task<List<ProductDto>> GetSortedProductsAsync(bool ascending = true);
 }

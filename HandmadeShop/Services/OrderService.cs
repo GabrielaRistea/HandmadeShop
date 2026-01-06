@@ -191,7 +191,7 @@ public class OrderService : IOrderService
 
         if (dto.PaymentMethod == "Ramburs")
         {
-            cart.statusOrder = "Placed_Ramburs";
+            cart.statusOrder = "Plasata_Ramburs";
 
             foreach (var item in cart.OrderItems)
             {
@@ -211,7 +211,7 @@ public class OrderService : IOrderService
         }
         else if (dto.PaymentMethod == "card")
         {
-            cart.statusOrder = "Pending_Payment";
+            cart.statusOrder = "Plata in asteptare";
             await _orderRepository.UpdateOrderAsync(cart);
 
             string stripeUrl = await CreateStripeSession(cart);
@@ -281,9 +281,9 @@ public class OrderService : IOrderService
 
             var order = await _orderRepository.GetOrderByIdAsync(orderId);
             
-            if (order != null && order.statusOrder == "Pending_Payment")
+            if (order != null && order.statusOrder == "Plata in asteptare")
             {
-                order.statusOrder = "Paid_Stripe";
+                order.statusOrder = "Platit_Stripe";
                 
                 foreach (var item in order.OrderItems)
                 {

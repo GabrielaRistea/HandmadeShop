@@ -50,15 +50,20 @@
             <span class="amount-text">{{ order.totalAmount }} RON</span>
           </div>
 
-          <div class="col-status">
+         <div class="col-status">
             <span class="mobile-label">Status:</span>
             <span class="status-badge" [ngClass]="{
-              'status-pending': order.statusOrder.includes('Pending'),
-              'status-success': order.statusOrder.includes('Paid') || order.statusOrder.includes('Placed'),
-              'status-shipped': order.statusOrder.includes('Shipped'),
-              'status-delivered': order.statusOrder.includes('Delivered')
+              'status-pending': order.statusOrder.includes('asteptare') || order.statusOrder.includes('Plasata'),
+              'status-shipped': order.statusOrder === 'Shipped' || order.statusOrder === 'Expediată',
+              'status-success': order.statusOrder.includes('Platit') || order.statusOrder === 'Livrată',
+              'status-delivered': order.statusOrder === 'Delivered' || order.statusOrder === 'Livrată'
             }">
-              {{ order.statusOrder }}
+              {{ 
+                order.statusOrder === 'Shipped' ? 'Expediată' : 
+                order.statusOrder === 'Delivered' ? 'Livrată' : 
+                order.statusOrder === 'Cancelled' ? 'Anulată' : 
+                order.statusOrder 
+              }}
             </span>
           </div>
         </div>

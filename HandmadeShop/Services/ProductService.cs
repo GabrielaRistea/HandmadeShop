@@ -164,4 +164,32 @@ public class ProductService : IProductService
         }).ToList();
     }
     
+    public List<Product> GetAllProductsSortedByPrice(bool ascending = true)
+    {
+        return _productRepository.GetAllSortedByPrice(ascending).ToList();
+    }
+    
+    public async Task<List<ProductDto>> GetSortedProductsAsync(bool ascending = true)
+    {
+        var products = _productRepository.GetAll();
+
+        var sortedQuery = ascending 
+            ? products.OrderBy(p => p.Price) 
+            : products.OrderByDescending(p => p.Price);
+
+        return sortedQuery.Select(p => new ProductDto 
+        {
+            Id = p.ProductID,
+            Name = p.Name,
+            Description = p.Description,
+            Price = p.Price,
+            Stock = p.Stock,
+            ProductImage = p.ProductImage,
+            ImageFile = p.ImageFile,
+            Category = p.CatogoryId,
+            CategoryName = p.Category?.Name ?? "Uncategorized",
+            Artists = p.Artists?.Select(a => a.ArtistID).ToList(),
+            ArtistNames = p.Artists?.Select(a => a.Name ).ToList() 
+        }).ToList();
+    }
 }

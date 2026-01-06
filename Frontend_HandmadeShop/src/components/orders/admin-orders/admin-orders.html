@@ -40,10 +40,10 @@
 
           <div class="col-status text-center">
             <span class="status-badge" [ngClass]="{
-              'status-pending': o.status.includes('Pending') || o.status.includes('Placed'),
-              'status-shipped': o.status === 'Shipped',
-              'status-delivered': o.status === 'Delivered',
-              'status-cancelled': o.status === 'Cancelled'
+              'status-pending': o.status.includes('asteptare') || o.status.includes('Plasata'),
+              'status-shipped': o.status === 'Expediată',
+              'status-delivered': o.status === 'Livrată',
+              'status-cancelled': o.status === 'Anulată'
             }">
               {{ o.status }}
             </span>
@@ -53,10 +53,10 @@
             <div class="action-wrapper">
               <mat-icon class="select-icon">edit_notifications</mat-icon>
               <select (change)="updateStatus(o.orderId, $event)" class="admin-select">
-                <option value="" disabled selected>Schimba status...</option>
-                <option value="Shipped">Expediat</option>
-                <option value="Delivered">Livrat</option>
-                <option value="Cancelled">Anuleaza Comanda</option>
+                <option value="" disabled selected>Schimbă status...</option>
+                <option value="Expediată">Expediată</option> 
+                <option value="Livrată">Livrată</option>
+                <option value="Anulată">Anulată</option>
               </select>
             </div>
           </div>
