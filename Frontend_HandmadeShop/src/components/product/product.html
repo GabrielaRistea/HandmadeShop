@@ -2,6 +2,16 @@
 <div class="products-container">
   <div class="header">
     <h2>Produse</h2>
+
+    <div class="sort-controls">
+      <label for="sort">Sorteaza dupa pret: </label>
+      <select id="sort" (change)="onSortChange($event)" class="sort-select">
+        <option value="" disabled selected>Alege...</option>
+        <option value="asc">Crescator</option>
+        <option value="desc">Descrescator</option>
+      </select>
+    </div>
+
     @if (authService.isAdmin()) {
     <a routerLink="/product-create" mat-flat-button color="primary">Adauga un produs</a>
     }

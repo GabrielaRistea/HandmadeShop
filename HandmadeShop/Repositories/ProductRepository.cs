@@ -107,5 +107,21 @@ public class ProductRepository : IProductRepository
             .Where(p => p.Artists.Any(a => a.ArtistID == id))
             .ToList();
     }
+    
+    public IEnumerable<Product> GetAllSortedByPrice(bool ascending = true)
+    {
+        var query = _context.Products
+            .Include(a => a.Artists)
+            .Include(c => c.Category)
+            .AsQueryable();
 
+        if (ascending)
+        {
+            return query.OrderBy(p => p.Price).ToList();
+        }
+        else
+        {
+            return query.OrderByDescending(p => p.Price).ToList();
+        }
+    }
 }

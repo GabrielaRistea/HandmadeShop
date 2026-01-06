@@ -11,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
 import { WishlistService } from '../../services/wishlist.service';
 import { MatIconModule } from '@angular/material/icon';
 import { OrdersService } from '../../services/orders.service';
+import { MatOption, MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-product',
@@ -62,12 +63,22 @@ export class ProductComponent {
   }
 
   ngOnInit() {
-
     this.categoryFilter();
     this.searchProduct();
     this.artistFilter();
-    
+  
+  }
 
+  onSortChange(event: any) {
+    const sortOrder = event.target.value; 
+    this.productService.getSorted(sortOrder).subscribe(products => {
+      this.products = products.map(a => ({
+                ...a,
+                CategoryName: a.CategoryName, 
+                ArtistName: a.ArtistName ? a.ArtistName.join(', ') : "Unknown",
+                imageSrc: a.productImage ? 'data:image/png;base64,' + a.productImage : null
+            }));
+          });
   }
 
   private categoryFilter() {

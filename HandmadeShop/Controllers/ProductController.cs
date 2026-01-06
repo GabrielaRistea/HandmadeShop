@@ -148,4 +148,19 @@ public class ProductController : ControllerBase
             CatogoryId = productDto.Category
         };
     }
+    
+    [HttpGet("filter")]
+    public async Task<IActionResult> GetProducts(string sortBy = "asc")
+    {
+        bool ascending = sortBy.ToLower() != "desc";
+
+        var result = await _productService.GetSortedProductsAsync(ascending);
+
+        if (result == null || result.Count == 0)
+        {
+            return NotFound("Nu s-au gasit produse.");
+        }
+
+        return Ok(result);
+    }
 }

@@ -42,4 +42,11 @@ export class ProductsService {
   public getByArtistId(artistId: number): Observable<ProductDto[]> {
     return this.http.get<ProductDto[]>(`${this.apiUrl}/by-artist-id/${artistId}`);
   }
+
+  public getSorted(sortBy: string): Observable<ProductDto[]> {
+    return this.http.get<ProductDto[]>(`${this.apiUrl}/filter`, {
+      params: { sortBy: sortBy }
+    });
+  }
+    
 }

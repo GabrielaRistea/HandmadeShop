@@ -22,4 +22,5 @@ public interface IProductRepository
     List<Category> GetAllCategories();
     List<Product> GetProductByCategory(int id);
     List<Product> GetProductByArtist(int id);
+    IEnumerable<Product> GetAllSortedByPrice(bool ascending = true);
 }
