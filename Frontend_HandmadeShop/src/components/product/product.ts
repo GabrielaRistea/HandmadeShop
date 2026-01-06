@@ -10,6 +10,7 @@ import { SearchService } from '../../services/search.service';
 import { AuthService } from '../../services/auth.service';
 import { WishlistService } from '../../services/wishlist.service';
 import { MatIconModule } from '@angular/material/icon';
+import { OrdersService } from '../../services/orders.service';
 
 @Component({
   selector: 'app-product',
@@ -24,11 +25,29 @@ export class ProductComponent {
   private route = inject(ActivatedRoute);
   public authService = inject(AuthService);
   private wishlistService = inject(WishlistService);
+  private ordersService = inject(OrdersService);
   
   constructor( private productService: ProductsService, 
     private searchService: SearchService) 
   {
     //this.loadProducts();
+  }
+
+  addToCart(productId: number) {
+    const quantity = 1; 
+
+    this.ordersService.addToCart(productId, quantity).subscribe({
+      next: () => {
+        alert('Produsul a fost adăugat în coș!');
+      },
+      error: (err) => {
+        if (err.status === 401) {
+          alert('Trebuie să fii logat pentru a adăuga produse în coș.');
+        } else {
+          alert('Eroare: ' + (err.error?.message || 'Nu s-a putut adăuga în coș.'));
+        }
+      }
+    });
   }
 
   addToWishlist(productId: number) {

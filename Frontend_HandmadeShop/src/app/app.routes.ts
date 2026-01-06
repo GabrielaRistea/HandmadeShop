@@ -13,6 +13,11 @@ import { LoginComponent } from '../components/auth/login/login';
 import { RegisterComponent } from '../components/auth/register/register';
 import { WishlistComponent } from '../components/wishlist/wishlist';
 import { ProductDetailsComponent } from '../components/product/product-details/product-details';
+import { CartComponent } from '../components/orders/cart/cart';
+import { AdminOrdersComponent } from '../components/orders/admin-orders/admin-orders';
+import { CheckoutComponent } from '../components/orders/checkout/checkout';
+import { OrderSuccessComponent } from '../components/orders/order-success/order-success';
+import { MyOrdersComponent } from '../components/orders/myorders/myorders';
 
 export const routes: Routes = [
     {path:'', component: HomeComponent},
@@ -30,6 +35,11 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'wishlist', component: WishlistComponent},
-    { path: 'product-details/:id', component: ProductDetailsComponent },
+    {path: 'product-details/:id', component: ProductDetailsComponent },
+    {path: 'cart', component: CartComponent },
+    {path: 'checkout', component: CheckoutComponent },
+    {path: 'order-success', component: OrderSuccessComponent }, 
+    {path: 'my-orders', component: MyOrdersComponent },
+    {path: 'admin/orders', component: AdminOrdersComponent },
 
 ];

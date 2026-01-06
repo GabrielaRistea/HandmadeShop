@@ -176,7 +176,12 @@ public class OrderService : IOrderService
                                     ". In stoc: " + product.Stock + ", cerut: " + item.Quantity);
             }
         }
-
+        float finalTotal = 0;
+        foreach (var item in cart.OrderItems)
+        {
+            finalTotal += item.Quantity * item.Product.Price;
+        }
+        cart.TotalAmount = finalTotal;
         cart.ShippingAddress = dto.ShippingAddress;
         cart.PhoneNumber = dto.PhoneNumber;
         cart.PaymentMethod = dto.PaymentMethod;
@@ -338,6 +343,7 @@ public class OrderService : IOrderService
                 Status = o.statusOrder,
                 TotalAmount = o.TotalAmount,
                 Address = o.ShippingAddress,
+                PhoneNumber = o.PhoneNumber,
                 CustomerName = o.User != null ? o.User.UserName : "Anonim",
                 CustomerEmail = o.User != null ? o.User.Email : "-"
             };
