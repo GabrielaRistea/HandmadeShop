@@ -29,8 +29,15 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-flat-button color="primary">Adauga in cos</button>
-        <!-- <button mat-flat-button color="warn" aria-label="Add to wishlist">Favorite</button> -->
+        @if (product.stock > 0) {
+          <button mat-flat-button color="primary" (click)="addToCart(product.id)">
+            Adauga in cos
+          </button>
+        } @else {
+          <button mat-flat-button disabled style="background-color: #f1f1f1; color: #888;">
+            Stoc insuficient
+          </button>
+        }
          <button mat-flat-button 
             color="warn" 
             aria-label="Add to wishlist" 

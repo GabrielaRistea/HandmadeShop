@@ -1,0 +1,49 @@
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <mat-card class="p-4 shadow">
+        <mat-card-header>
+          <mat-card-title>Finalizare Comanda</mat-card-title>
+        </mat-card-header>
+
+        <form [formGroup]="checkoutForm" (ngSubmit)="submit()" class="mt-4">
+          
+          <mat-form-field appearance="outline" class="w-100 mb-3">
+            <mat-label>Adresa de Livrare</mat-label>
+            <textarea matInput formControlName="shippingAddress" placeholder="Strada, Nr, Bloc, Scara, Ap, Oras..."></textarea>
+            <mat-error *ngIf="checkoutForm.get('shippingAddress')?.hasError('required')">
+              Adresa este obligatorie.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-100 mb-3">
+            <mat-label>Numar de Telefon</mat-label>
+            <input matInput formControlName="phoneNumber" placeholder="07xxxxxxxx">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="checkoutForm.get('phoneNumber')?.hasError('pattern')">
+              Introduceti un numar de telefon valid (10 cifre).
+            </mat-error>
+          </mat-form-field>
+
+          <div class="mb-4">
+            <label class="d-block mb-2 font-weight-bold">Metoda de Plata:</label>
+            <mat-radio-group formControlName="paymentMethod" color="primary">
+              <mat-radio-button value="Ramburs" class="me-3">Plata la livrare (Ramburs)</mat-radio-button>
+              <mat-radio-button value="card">Plata online cu Cardul</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <hr>
+
+          <div class="d-grid gap-2">
+            <button mat-raised-button color="primary" type="submit" [disabled]="checkoutForm.invalid">
+              CONFIRMA SI PLASEAZA COMANDA
+            </button>
+            <button mat-button type="button" routerLink="/cart">Inapoi la cos</button>
+          </div>
+
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>

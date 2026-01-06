@@ -1,0 +1,74 @@
+<div class="admin-container mt-5 mb-5">
+  <div class="admin-card-dark">
+    
+    <div class="admin-header">
+      <div class="d-flex align-items-center">
+        <mat-icon class="me-2 text-primary">admin_panel_settings</mat-icon>
+        <h2 class="m-0">Gestiune Comenzi</h2>
+      </div>
+      <span class="badge bg-primary px-3">{{ orders.length || 0 }} Comenzi Totale</span>
+    </div>
+
+    <div class="admin-content">
+      
+
+      <div class="admin-list">
+        <div *ngFor="let o of orders" class="admin-row">
+          
+          <div class="col-id">
+            <span class="id-tag">#{{ o.orderId }}</span>
+          </div>
+
+          <div class="col-client">
+            <div class="client-name">{{ o.customerName }}</div>
+            <div class="delivery-info">
+                <mat-icon style="font-size: 14px; height: 14px; width: 14px;">place</mat-icon>
+                    {{ o.address }}
+                </div>
+          </div>
+
+          <div class="col-contact">
+            <div class="client-phone">
+                <mat-icon style="font-size: 14px; height: 14px; width: 14px;">phone</mat-icon>
+                {{ o.phoneNumber }}
+            </div>
+          </div>
+
+          <div class="col-total text-center">
+            <span class="total-amount">{{ o.totalAmount }} RON</span>
+          </div>
+
+          <div class="col-status text-center">
+            <span class="status-badge" [ngClass]="{
+              'status-pending': o.status.includes('Pending') || o.status.includes('Placed'),
+              'status-shipped': o.status === 'Shipped',
+              'status-delivered': o.status === 'Delivered',
+              'status-cancelled': o.status === 'Cancelled'
+            }">
+              {{ o.status }}
+            </span>
+          </div>
+
+          <div class="col-actions text-end">
+            <div class="action-wrapper">
+              <mat-icon class="select-icon">edit_notifications</mat-icon>
+              <select (change)="updateStatus(o.orderId, $event)" class="admin-select">
+                <option value="" disabled selected>Schimba status...</option>
+                <option value="Shipped">Expediat</option>
+                <option value="Delivered">Livrat</option>
+                <option value="Cancelled">Anuleaza Comanda</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="orders.length === 0" class="text-center p-5 text-muted">
+      <mat-icon style="font-size: 48px; width: 48px; height: 48px;">inbox</mat-icon>
+      <p class="mt-2">Nu exista comenzi inregistrate in sistem.</p>
+    </div>
+
+  </div>
+</div>

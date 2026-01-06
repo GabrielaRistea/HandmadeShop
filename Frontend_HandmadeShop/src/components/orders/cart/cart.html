@@ -1,0 +1,61 @@
+<div class="cart-container mt-5">
+  <div class="cart-card-dark">
+    <div class="cart-header">
+      <h2>Coșul tău</h2>
+      <span class="item-count">{{ cart?.items?.length || 0 }} Produse</span>
+    </div>
+
+    <div *ngIf="cart?.items?.length > 0; else empty" class="cart-content">
+     
+
+      <div class="cart-items-list">
+        <div *ngFor="let item of cart.items" class="cart-item">
+          <div class="item-info">
+            <img [src]="'data:image/jpeg;base64,' + item.productImage" class="item-img">
+            <div class="item-details">
+              <span class="item-name">{{ item.productName }}</span>
+              <!-- <span class="item-id">ID: {{ item.productId }}</span> -->
+            </div>
+          </div>
+          
+          <div class="item-price text-center">{{ item.pricePerUnit }} RON</div>
+          
+          <div class="item-qty text-center">
+            <div class="qty-selector-dark">
+              <button (click)="changeQuantity(item.productId, false)">-</button>
+              <span class="qty-val">{{ item.quantity }}</span>
+              <button (click)="changeQuantity(item.productId, true)">+</button>
+            </div>
+          </div>
+          
+          <div class="item-total text-end">{{ item.subtotal }} RON</div>
+        </div>
+      </div>
+
+      <div class="cart-summary">
+        <div class="summary-top">
+          <button class="btn-clear" (click)="clear()">
+            <mat-icon style="font-size: 18px; vertical-align: middle;">delete</mat-icon> Goleste cosul
+          </button>
+          <div class="total-box text-end">
+            <span class="total-label">Total de plata:</span>
+            <div class="total-amount">{{ cart.totalAmount }} RON</div>
+          </div>
+        </div>
+        
+        <div class="summary-actions">
+          <button class="btn-continue-dark" routerLink="/products">Continua cumparaturile</button>
+          <button class="btn-checkout-dark" (click)="goToCheckOut()">Finalizeaza Comanda</button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #empty>
+      <div class="empty-state">
+        <mat-icon style="font-size: 48px; width: 48px; height: 48px;">shopping_cart_checkout</mat-icon>
+        <p>Cosul tau este gol momentan.</p>
+        <!-- <button class="btn-checkout-dark" routerLink="/product">Mergi la magazin</button> -->
+      </div>
+    </ng-template>
+  </div>
+</div>

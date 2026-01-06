@@ -35,9 +35,24 @@
             Conecteaza-te
             </button>
         } @else {
+            @if (authService.isAdmin()) {
+              <button [routerLink]="['/admin/orders']" mat-button>
+                View Orders
+            </button>
+            }  
+            <button [routerLink]="['/my-orders']" mat-button>
+                MyOrders
+            </button>
+            <button mat-icon-button 
+                routerLink="/cart" 
+                matTooltip="Vezi coșul de cumpărături"
+                class="cart-icon-btn">
+                <mat-icon>shopping_cart</mat-icon>
+            </button>
             <button mat-icon-button routerLink="/wishlist" matTooltip="Favorite">
             <mat-icon>favorite</mat-icon>
             </button>
+            
             @if (authService.currentUser()) {
             <span class="user-greeting">
                 Salut, {{ authService.currentUser().email }}!
