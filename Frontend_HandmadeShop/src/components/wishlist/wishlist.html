@@ -11,7 +11,7 @@
   <div class="products-grid">
     <mat-card class="product-card" *ngFor="let product of products">
       
-      <div class="product-image-wrapper" *ngIf="product.imageSrc">
+      <div class="product-image-wrapper" [routerLink]="['/product-details', product.id]" *ngIf="product.imageSrc">
         <img [src]="product.imageSrc" [alt]="product.Name" class="product-image">
       </div>
 

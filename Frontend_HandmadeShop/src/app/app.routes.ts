@@ -18,6 +18,7 @@ import { AdminOrdersComponent } from '../components/orders/admin-orders/admin-or
 import { CheckoutComponent } from '../components/orders/checkout/checkout';
 import { OrderSuccessComponent } from '../components/orders/order-success/order-success';
 import { MyOrdersComponent } from '../components/orders/myorders/myorders';
+import { ProfileComponent } from '../components/profile/profile';
 
 export const routes: Routes = [
     {path:'', component: HomeComponent},
@@ -41,5 +42,6 @@ export const routes: Routes = [
     {path: 'order-success', component: OrderSuccessComponent }, 
     {path: 'my-orders', component: MyOrdersComponent },
     {path: 'admin/orders', component: AdminOrdersComponent },
+    {path: 'profile', component: ProfileComponent},
 
 ];

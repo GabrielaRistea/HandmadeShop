@@ -19,7 +19,7 @@ export class OrderSuccessComponent implements OnInit {
     
     if (sessionId) {
       this.ordersService.confirmPayment(sessionId).subscribe({
-        next: () => this.message = "Plata a fost confirmata cu succes! Stocul a fost actualizat.",
+        next: () => this.message = "Plata a fost confirmata cu succes!",
         error: () => this.message = "Eroare la confirmarea platii."
       });
     } else {
