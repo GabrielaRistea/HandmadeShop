@@ -53,13 +53,19 @@
             <mat-icon>favorite</mat-icon>
             </button>
             
-            @if (authService.currentUser()) {
+            <!-- @if (authService.currentUser()) {
             <span class="user-greeting">
                 Salut, {{ authService.currentUser().email }}!
             </span>
-            }
+            } -->
+
+            @if (authService.currentUser()) {
+            <a [routerLink]="['/profile']" class="user-greeting" style="text-decoration: none; cursor: pointer;">
+                Salut, {{ authService.currentUser().email }}!
+            </a>
+}
             
-            <button (click)="onLogout()" mat-button color="warn">
+            <button (click)="onLogout()" mat-button routerLink="" color="warn">
             <mat-icon>logout</mat-icon> Deconecteaza-te
             </button>
         }

@@ -1,0 +1,27 @@
+<div class="auth-wrapper"> <mat-card class="auth-card">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon color="primary" style="font-size: 40px; width: 40px; height: 40px;">account_circle</mat-icon>
+      </div>
+      <mat-card-title>Profilul meu</mat-card-title>
+      <mat-card-subtitle>Gestionare cont</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content style="margin-top: 20px;">
+      <div class="profile-info">
+        <p><strong>Email:</strong> {{ authService.currentUser()?.email }}</p>
+        <p><strong>Rol:</strong> {{ authService.isAdmin() ? 'Administrator' : 'Utilizator' }}</p>
+      </div>
+
+      <div class="profile-actions" style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+        <button mat-raised-button color="primary" [routerLink]="['/my-orders']">
+          <mat-icon>history</mat-icon> Istoric comenzi
+        </button>
+
+        <button mat-stroked-button color="warn" (click)="onLogout()" [routerLink]="['']">
+          <mat-icon>logout</mat-icon> Deconecteaza-te
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
